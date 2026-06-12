@@ -1,0 +1,35 @@
+key: BreitWigner
+label: Relativistic Breit-Wigner propagator
+description: |
+  Generic Breit-Wigner propagator with free resonance mass m and width Gamma.
+  Three independent boolean constants control the formula (all default False):
+    is_lorentzian: non-relativistic Lorentzian (x-m)^2 denominator
+    is_running:    x^2 in numerator (running-width, spin-1 form)
+    free_power:    exponent p is a free shape parameter
+latex:
+- when: {is_lorentzian: false, is_running: false, free_power: false}
+  formula: 'f(x)=\dfrac{1}{(x^{2}-m^{2})^{2}+(m\,\Gamma)^{2}}'
+- when: {is_lorentzian: false, is_running: true, free_power: false}
+  formula: 'f(x)=\dfrac{x^{2}}{(x^{2}-m^{2})^{2}+(m\,\Gamma)^{2}}'
+- when: {is_lorentzian: false, is_running: false, free_power: true}
+  formula: 'f(x)=\dfrac{1}{|x^{2}-m^{2}|^{p}+(m\,\Gamma)^{p}}'
+- when: {is_lorentzian: false, is_running: true, free_power: true}
+  formula: 'f(x)=\dfrac{x^{2}}{|x^{2}-m^{2}|^{p}+(m\,\Gamma)^{p}}'
+- when: {is_lorentzian: true, is_running: false, free_power: false}
+  formula: 'f(x)=\dfrac{1}{(x-m)^{2}+(\Gamma/2)^{2}}'
+- when: {is_lorentzian: true, is_running: true, free_power: false}
+  formula: 'f(x)=\dfrac{x^{2}}{(x-m)^{2}+(\Gamma/2)^{2}}'
+- when: {is_lorentzian: true, is_running: false, free_power: true}
+  formula: 'f(x)=\dfrac{1}{|x-m|^{p}+(\Gamma/2)^{p}}'
+- when: {is_lorentzian: true, is_running: true, free_power: true}
+  formula: 'f(x)=\dfrac{x^{2}}{|x-m|^{p}+(\Gamma/2)^{p}}'
+reference: https://en.wikipedia.org/wiki/Relativistic_Breit%E2%80%93Wigner_distribution
+
+npar: 2
+param_names: [m, Gamma]
+
+constants:
+  is_lorentzian: false  # true: non-relativistic Lorentzian (x-m)^2 denominator
+  is_running: false     # true: x^2 in numerator (running-width, spin-1 form)
+  free_power: false     # true: exponent p is a free shape parameter
+  Gamma_min: 1.0e-9

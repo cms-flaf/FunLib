@@ -1,0 +1,24 @@
+key: ParabCyl
+label: Parabolic cylinder D_{#nu} (Weber eq)
+description: |
+  **Parabolic cylinder (Weber) functions** Dν(z) are solutions to the Weber differential equation, which separates the **quantum harmonic oscillator** in Cartesian coordinates.
+
+  Applications:
+
+  - **Quantum Stark effect** and scattering with quadratic potentials
+  - **Signal processing**: Wigner distribution eigenfunctions
+  - Basis for **Mehler-Fock integral transforms**
+
+  For non-integer ν, the function provides a continuous family of exponentially damped shapes, useful for unusual tail behaviours.
+latex: 'f(x)=D_{\nu}(z),\quad D_{\nu}''(z)+\!\left(\nu+\tfrac{1}{2}-\tfrac{z^{2}}{4}\right)D_{\nu}(z)=0,\quad D_{\nu}(z)\sim z^{\nu}e^{-z^{2}/4}\ (z\to+\infty),\quad z=a\,x+b'
+reference: https://en.wikipedia.org/wiki/Parabolic_cylinder_function
+param_names:
+- nu
+- a
+- b
+constants:
+  z_abs_max: 30.0   # pbdv segfaults (SIGSEGV) for |z| > z_abs_max — clamp to 0
+  nu_lo: -20.0      # pbdv segfaults for nu outside [nu_lo, nu_hi] — clamp
+  nu_hi: 20.0
+minimization:
+  max_function_calls: 1500

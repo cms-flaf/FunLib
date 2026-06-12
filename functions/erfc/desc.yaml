@@ -1,0 +1,20 @@
+key: Erfc
+label: Complementary error function
+description: |
+  The **complementary error function** `erfc(z) = 1 − erf(z)` is the tail integral of the Gaussian distribution, dating to **Gauss** (early 19th century) and Laplace's theory of errors.
+
+  Applications:
+
+  - **Heat conduction**: solution of the diffusion equation with a step-function boundary condition
+  - **Statistics**: Gaussian tail probabilities
+  - **Communications theory**: probability of bit error in AWGN channels
+  - **Quantum chemistry**: evaluation of electron repulsion integrals
+
+  Here it serves as a smooth threshold-suppression function that transitions from 2 to 0 across a width σ centred at μ.
+latex: f(x)=\mathrm{erfc}\!\left(\dfrac{x-\mu}{\sigma}\right)
+reference: https://en.wikipedia.org/wiki/Error_function
+param_names:
+- mu
+- sigma
+constants:
+  sigma_min: 1.0e-9

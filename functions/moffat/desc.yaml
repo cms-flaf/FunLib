@@ -1,0 +1,15 @@
+key: Moffat
+label: Moffat PSF (astronomy)
+description: |
+  The **Moffat profile** (**A.F.J. Moffat**, 1969) was proposed as a better model of stellar images in ground-based astronomy than a Gaussian, because atmospheric turbulence (**Kolmogorov spectrum**) produces power-law wings.
+  The Lorentzian-like tails `f ∝ (1 + r²/α²)^{−β}` are controlled by the Moffat parameter β (typical values 2–5 for good seeing).
+
+  Applications: **adaptive-optics systems**, point-spread function modelling in optical/near-IR photometry (HST, VLT), photometric redshift derivation from galaxy profiles.
+latex: f(x)=(1+(x/\alpha)^{2})^{-\beta}
+reference: https://en.wikipedia.org/wiki/Moffat_distribution
+param_names:
+- alpha
+- beta
+constants: {}
+minimization:
+  max_function_calls: 500

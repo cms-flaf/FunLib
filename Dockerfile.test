@@ -1,0 +1,39 @@
+# Test image for FunLib workspace tools on Linux (CMS combine-standalone).
+#
+# Build:
+#   docker build --platform linux/amd64 -t funlib-test \
+#     -f FunLib/Dockerfile.test .
+# Run:
+#   docker run --platform linux/amd64 --rm funlib-test
+#   docker run --platform linux/amd64 --rm funlib-test "python3 -u FunLib/validation/test_workspace.py --no-combine"
+#
+# The base image provides: combine, ROOT 6.30, Python 3.9, g++ 12.
+# The base image runs as cmsusr (uid=1000); switch to root for setup steps.
+
+FROM gitlab-registry.cern.ch/cms-cloud/combine-standalone:latest
+
+# scipy is required by many FunLib kernels; not in the base image.
+# cmsusr owns the venv so pip installs there without root.
+RUN pip install scipy --quiet
+
+# Create workspace directory as root, then hand it to cmsusr.
+USER root
+RUN mkdir -p /workspace/h-mumu/FunLib/tools/lib \
+ && chown -R cmsusr:cmsusr /workspace
+
+# Copy FunLib files (owned by cmsusr so the runtime user can compile the plugin).
+# Remove any macOS-compiled artifacts (dylib/rootmap/pcm) so Linux recompiles cleanly.
+COPY --chown=cmsusr:cmsusr FunLib /workspace/h-mumu/FunLib
+RUN bash -c 'rm -f \
+    /workspace/h-mumu/FunLib/tools/lib/*.dylib \
+    /workspace/h-mumu/FunLib/tools/lib/*.rootmap \
+    /workspace/h-mumu/FunLib/tools/lib/*.pcm \
+    /workspace/h-mumu/FunLib/tools/lib/RooPyFitFunction_dict.cxx \
+    2>/dev/null; true'
+
+USER cmsusr
+ENV PYTHONPATH=/workspace/h-mumu:${PYTHONPATH}
+WORKDIR /workspace/h-mumu
+
+# Default: run the full workspace test (roundtrip + fitTo + combine Significance)
+CMD ["python3 -u FunLib/validation/test_workspace.py"]

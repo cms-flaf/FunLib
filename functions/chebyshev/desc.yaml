@@ -1,0 +1,18 @@
+key: "Chebyshev-{npar}"
+label: "Chebyshev polynomial deg {npar}"
+description: |
+  Chebyshev polynomials of the first kind (P. Chebyshev, 1853) minimise
+  the maximum deviation from zero among all monic polynomials on [−1,1] —
+  the minimax property.  They are orthogonal on [−1,1] with weight 1/√(1−u²).
+
+  Basis: T_0(u)=1, T_1(u)=u, T_k(u)=2*u*T_{k-1}(u)-T_{k-2}(u).
+latex: 'f(x)=1+\sum_{i=1}^{n}c_i\,T_i(u),\ \ u=\dfrac{2(x-x_{\min})}{x_{\max}-x_{\min}}-1'
+reference: https://en.wikipedia.org/wiki/Chebyshev_polynomials
+# npar and param_names are intentionally absent: variable-npar kernel.
+# n in the latex formula is resolved from constants["n"] = tc_npar by the validator.
+# T_i(u) tokens produced by _expand_sum are expanded by the generic _expand_fn_defs
+# mechanism using the recurrence defined below.
+latex_fn_defs:
+  "T_0(u)": "1"
+  "T_1(u)": "u"
+  "T_k(u)": "2*u*T_{k-1}(u)-T_{k-2}(u)"

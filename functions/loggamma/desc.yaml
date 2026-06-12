@@ -1,0 +1,20 @@
+key: LogGamma
+label: Log-gamma
+description: |
+  The **Log-Gamma distribution** (**Consul & Jain**, 1971) is the distribution of the logarithm of a Gamma random variable (equivalently, the natural parametrisation of the three-parameter Gamma).
+
+  Applications:
+
+  - **Bayesian prior construction** (flexible model for non-negative skewed data)
+  - **Survival analysis** where logarithmic transformation is natural
+  - Its hazard function can be **non-monotone** (bathtub-shaped), accommodating phenomena with early and late failure regimes
+latex: f(x)=\dfrac{1}{\mathrm{scale}}\exp\!\left(c\,z-e^{z}-\ln\Gamma(c)\right),\ \ z=(x-\mathrm{loc})/\mathrm{scale}
+reference: https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.loggamma.html
+param_names:
+- c
+- loc
+- scale
+constants:
+  param_min: 1.0e-9
+minimization:
+  max_function_calls: 500

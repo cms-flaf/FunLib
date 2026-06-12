@@ -1,0 +1,16 @@
+key: Hagedorn
+label: Hagedorn / Tsallis power law
+description: |
+  The **Hagedorn function** (**Rolf Hagedorn**, 1965) was derived from the statistical bootstrap model of hadronic matter.
+  At temperatures below the Hagedorn temperature T_H ≈ 160 MeV, hadron production follows this distribution.
+  It transitions from a **purely exponential (thermal) form** at low pT to a **power-law (hard QCD) form** at high pT.
+
+  The **Tsallis distribution** is a two-parameter generalisation.
+  Ubiquitous in describing pp and Pb-Pb transverse-momentum spectra of pions, kaons, and protons at RHIC, SPS, and LHC energies.
+latex: f(x)=(1+x/p_{0})^{-n}
+reference: https://arxiv.org/abs/1210.3661
+param_names:
+- p0
+- n
+constants:
+  p0_min: 1.0e-9

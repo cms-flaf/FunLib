@@ -1,0 +1,21 @@
+key: gNFW
+label: Generalized NFW halo profile (astrophysics)
+description: |
+  The **Navarro-Frenk-White (NFW) profile** (**Navarro, Frenk & White**, 1996) was derived from N-body simulations of dark matter halo formation.
+  The **generalized NFW (gNFW)** adds free inner slope γ and outer slope β: `ρ ∝ r^{−γ}(1 + r/r_s)^{γ−β}` — a doubly-broken power law.
+
+  Applications:
+
+  - Standard model for **dark matter density profiles** in galaxy clusters
+  - Gravitational lensing, rotation curve, and X-ray analyses
+  - **Indirect dark matter searches** (CTA, Fermi-LAT): determines the J-factor
+latex: f(x)=\dfrac{1}{(x/r_{s})^{\gamma}(1+x/r_{s})^{\beta-\gamma}}
+reference: https://en.wikipedia.org/wiki/Navarro%E2%80%93Frenk%E2%80%93White_profile
+param_names:
+- rs
+- gamma
+- beta
+constants:
+  rs_min: 1.0e-9
+minimization:
+  max_function_calls: 500

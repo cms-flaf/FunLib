@@ -1,0 +1,19 @@
+key: "S-Powerlaw-{n_terms}"
+label: "Sum of {n_terms} power laws"
+description: |
+  Sum of N = n_terms power-law terms with 2N−1 shape parameters:
+    n_terms=1: (x/x_{mid})^{b_1}
+    n_terms=2: (x/x_{mid})^{b_1} + A_2·(x/x_{mid})^{b_2}
+    n_terms=3: + A_3·(x/x_{mid})^{b_3}
+  A_1 ≡ 1 is fixed; A_2, A_3, … are free amplitude ratios.
+  x_{mid} = (x_min + x_max) / 2 is the midpoint of the fit range.
+
+  **Power-law distributions** appear naturally in QCD because parton distribution
+  functions fall as power laws at large x — Bjorken scaling (J.D. Bjorken, 1969).
+latex: 'f(x)=\sum_{k=1}^{n}A_k\left(\dfrac{x}{x_{mid}}\right)^{b_k}'
+latex_var_map:
+  n: n_terms
+reference: https://arxiv.org/abs/2009.04363
+# n_terms constant (set per entry in all_functions.yaml) drives npar = 2*n_terms-1.
+constants:
+  A1: 1.0

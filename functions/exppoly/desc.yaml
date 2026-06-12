@@ -1,0 +1,13 @@
+key: "ExpPoly-{npar}"
+label: "exp(poly deg {npar})"
+description: |
+  The exponential of a degree-n polynomial in the normalised mass variable
+  x' = 2(x−x₀)/(x_max−x_min).  The exponential form is the canonical
+  positive-definite smoothly varying function in statistics and physics; the
+  polynomial exponent captures log-curvature of the falling DY spectrum.
+latex: 'f(x)=\exp\!\left(\sum_{i=1}^{n}c_i\,x^{\prime\,i}\right),\ \ x^{\prime}=\dfrac{2(x-x_{mid})}{x_{\max}-x_{\min}}'
+reference: https://arxiv.org/abs/1408.6865
+constants:
+  exp_max: 700.0
+# npar and param_names are intentionally absent: variable-npar kernel.
+# n in the latex formula is resolved from constants["n"] = tc_npar by the validator.

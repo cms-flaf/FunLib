@@ -1,0 +1,20 @@
+key: "Laurent-{npar}"
+label: "Laurent series ({npar} free params)"
+description: |
+  **Laurent series** in negative powers of x, motivated by dimensional analysis:
+  QCD hard-scattering cross sections at leading order scale as dσ/dm ∝ m^{−p} × (PDF terms).
+  A Laurent series approximates the PDF-weighted cross section directly in terms of **inverse mass**.
+
+  The ratio r = x_max/x maps the fit range to r ∈ [1, x_max/x_min], keeping r ≥ 1 throughout.
+  p is the leading power (free parameter); c1…c_{n-1} are the polynomial correction coefficients.
+latex: 'f(x)=\left(\dfrac{x_{\max}}{x}\right)^{p}\!\left(1+\sum_{i=1}^{n}c_{i}\left(\dfrac{x_{\max}}{x}\right)^{i}\right)'
+reference: |
+  https://arxiv.org/abs/1408.6865
+  https://en.wikipedia.org/wiki/Laurent_series
+# npar and param_names are intentionally absent: variable-npar kernel.
+# n_terms constant (set per entry in all_functions.yaml) is the correction polynomial degree;
+# npar = n_terms + 1 (leading power p + n_terms correction coefficients c1..cn).
+latex_var_map:
+  n: n_terms
+minimization:
+  max_function_calls: 10000

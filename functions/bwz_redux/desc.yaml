@@ -1,0 +1,25 @@
+key: "BWZRedux-{npar-1}"
+label: "BWZ-Redux (poly deg {npar-1})  (CMS Run 2, AN-19-090)"
+description: |
+  Generalisation of the fixed-width relativistic Z kernel with a **free
+  denominator exponent p** and a degree-n polynomial in the exponent:
+  exp(c1·x + c2·x² + … + cn·x^n) / [(x²−M_Z²)^p + (M_Z·Γ_Z)^p].
+
+  At n=2, p=2 this reduces to the standard BWZxBern Z kernel (without the
+  Bernstein polynomial).  For p≠2 the lineshape wings are narrower (p>2) or
+  broader (p<2) relative to the fixed-width relativistic form.
+latex: 'f(x)=\dfrac{\exp\!\left(\sum_{i=1}^{n}c_{i}\,x^{i}\right)}{(x^{2}-M_{Z}^{2})^{p}+(M_{Z}\,G_{Z})^{p}}'
+reference: https://arxiv.org/abs/2009.04363
+latex_var_map:
+  MZ: "m"
+  GZ: "Gamma"
+  n: n_terms
+# npar and param_names are intentionally absent: variable-npar kernel.
+# n_terms constant (set per entry in all_functions.yaml) drives npar = n_terms+1.
+constants:
+  m: 91.1876
+  Gamma: 2.4952
+  is_lorentzian: false  # relativistic denominator (corrected from AN-19-090)
+  is_running: false
+  free_power: true      # denominator exponent p is a free shape parameter
+  exp_max: 700.0        # upper clamp for sum(ci*x^i) before exp()

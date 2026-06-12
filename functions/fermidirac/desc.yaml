@@ -1,0 +1,18 @@
+key: FermiDirac
+label: Fermi–Dirac step (condensed matter)
+description: |
+  The **Fermi-Dirac distribution** (**Fermi**, 1926; **Dirac**, 1926) gives the mean occupation number of a quantum state for a system of identical non-interacting fermions:
+  `n = (exp((E − μ)/kT) + 1)^{−1}`
+
+  It is the fundamental distribution of quantum statistical mechanics for **half-integer-spin particles**, underlying the electronic structure of metals, semiconductors, and neutron stars.
+  As a background shape, the step-like transition from 1 to 0 near μ (softened by kT) models a spectrum with a **sharp onset or threshold suppression**.
+latex: f(x)=\dfrac{1}{e^{(x-\mu)/T}+1}
+reference: https://en.wikipedia.org/wiki/Fermi%E2%80%93Dirac_statistics
+param_names:
+- mu
+- T
+constants:
+  exp_max: 700.0
+  T_min: 1.0e-6
+minimization:
+  max_function_calls: 500

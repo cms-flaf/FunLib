@@ -1,0 +1,21 @@
+key: GenGamma
+label: Generalized Gamma
+description: |
+  The **Generalized Gamma distribution** (**Stacy**, 1962) unifies three fundamental distributions:
+
+  - `d = 1`: standard **Gamma** distribution
+  - `p = 1`: **Weibull** distribution
+  - `p = 1, d = 1`: **exponential** distribution
+
+  It is the **maximum-entropy distribution** for a specified mean and mean of x^k.
+
+  Applications: medical survival statistics, telecommunications fading channels (**Nakagami-m**), particle physics pT and energy spectra of hadronic jets.
+latex: f(x)=x^{p}\,\exp\!\left[-(x/a)^{d}\right]
+reference: https://en.wikipedia.org/wiki/Generalized_gamma_distribution
+param_names:
+- p
+- a
+- d
+constants:
+  exp_max: 700.0
+  param_min: 1.0e-9

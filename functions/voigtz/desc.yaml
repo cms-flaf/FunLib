@@ -1,0 +1,18 @@
+key: VoigtZ
+label: 'Voigtian Z tail #times exp(quad)'
+description: |
+  The **Voigt profile** (**W. Voigt**, 1912) is a convolution of a Lorentzian (Breit-Wigner-like) with a Gaussian.
+  Here it is centred at m_Z, physically motivated as a convolution of the **Z propagator** (Lorentzian of width Γ_Z) with a **Gaussian representing the dimuon mass resolution** (σ).
+
+  The quadratic exponential correction `exp(a m' + b m'²)` absorbs residual QCD K-factor tilt and higher-order corrections.
+latex: f(x)=V(x-M_{Z};\,\sigma,G_{Z}/2)\exp\!\left(a\,x^{\prime}+b\,x^{\prime2}\right),\ x^{\prime}=\dfrac{2(x-x_{mid})}{x_{\max}-x_{\min}}
+reference: https://en.wikipedia.org/wiki/Voigt_profile
+param_names:
+- sigma
+- a
+- b
+constants:
+  M_Z: 91.1876
+  G_Z: 2.4952
+  exp_max: 700.0     # upper clamp for a*xn+b*xn^2 before exp()
+  sigma_min: 1.0e-9  # lower bound for sigma — prevents Voigt(x,0,G) degeneracy

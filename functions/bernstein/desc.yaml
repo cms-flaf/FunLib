@@ -1,0 +1,13 @@
+key: "Bernstein-{npar}"
+label: "Bernstein polynomial deg {npar}"
+description: |
+  Bernstein polynomial (named after S. N. Berstein).
+  c0=1 is fixed; npar free coefficients c1..cn control the shape.
+  Basis polynomials are non-negative on [0,1], guaranteeing a non-negative shape.
+latex: 'f(x)=(1-t)^n+\sum_{k=1}^{n}\binom{n}{k}c_k\,t^k(1-t)^{n-k},\ \ t=\dfrac{x-x_{\min}}{x_{\max}-x_{\min}}'
+reference: https://en.wikipedia.org/wiki/Bernstein_polynomial
+# npar and param_names are intentionally absent:
+#   npar       — variable; the factory derives it from len(initial_params)
+#   param_names — auto-generated as c1..cn from npar
+# n in the latex formula is resolved from constants["n"] = tc_npar by the validator.
+# c_0 = 1 (fixed) is written explicitly as the (1-t)^n term; the sum starts at k=1.

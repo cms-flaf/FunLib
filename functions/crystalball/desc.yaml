@@ -1,0 +1,40 @@
+key: CrystalBall
+label: "Crystal Ball — right-side power-law tail"
+description: |
+  The **Crystal Ball function** (**T. Skwarnicki**, DESY F31-86-02, 1986)
+  combines a Gaussian core with a power-law tail.  Three variants are
+  supported via ``constants["variant"]``:
+
+  **right_sided** (default here): power-law tail on the HIGH-mass side
+  (t > |α|).  Mirrored / reversed relative to the standard form.  Useful
+  for background modelling when the mean is placed below the fit range so
+  that the entire [110, 150] GeV window sits in the slowly-falling
+  power-law region.
+
+  **left_sided** (standard Wikipedia / SciPy / ROOT ``RooCBShape``):
+  power-law tail on the LOW-mass side (t ≤ −|α|).  Describes bremsstrahlung
+  energy-loss tails on signal peaks.
+
+  **double_sided** (DSCB): independent power-law tails on BOTH sides of the
+  Gaussian core, with separate (alpha_l, n_l) and (alpha_r, n_r).  Used
+  in LHCb and ATLAS signal fits; npar = 6.
+
+  Continuity and C¹-differentiability are preserved at every transition
+  point by the standard A/B construction with |α| = abs(α).
+latex:
+- when: {variant: right_sided}
+  formula: 'f(x)=\begin{cases}e^{-t^{2}/2} & t\le|\alpha|\\ A\,(B+t)^{-n} & t>|\alpha|\end{cases},\ t=\dfrac{x-\mu}{\sigma},\ A=\!\left(\dfrac{n}{|\alpha|}\right)^{\!n}e^{-\alpha^{2}/2},\ B=\dfrac{n}{|\alpha|}-|\alpha|'
+- when: {variant: left_sided}
+  formula: 'f(x)=\begin{cases}A\,(B-t)^{-n} & t\le-|\alpha|\\ e^{-t^{2}/2} & t>-|\alpha|\end{cases},\ t=\dfrac{x-\mu}{\sigma},\ A=\!\left(\dfrac{n}{|\alpha|}\right)^{\!n}e^{-\alpha^{2}/2},\ B=\dfrac{n}{|\alpha|}-|\alpha|'
+- when: {variant: double_sided}
+  formula: 'f(x)=\begin{cases}A\,(B-t)^{-n_{l}} & t<-|\alpha_{l}|\\ C\,(D+t)^{-n_{r}} & t>|\alpha_{r}|\\ e^{-t^{2}/2} & \text{otherwise}\end{cases},\ t=\dfrac{x-\mu}{\sigma},\ A=\!\left(\dfrac{n_{l}}{|\alpha_{l}|}\right)^{\!n_{l}}e^{-\alpha_{l}^{2}/2},\ B=\dfrac{n_{l}}{|\alpha_{l}|}-|\alpha_{l}|,\ C=\!\left(\dfrac{n_{r}}{|\alpha_{r}|}\right)^{\!n_{r}}e^{-\alpha_{r}^{2}/2},\ D=\dfrac{n_{r}}{|\alpha_{r}|}-|\alpha_{r}|'
+reference: "T. Skwarnicki, DESY F31-86-02 (1986); https://en.wikipedia.org/wiki/Crystal_Ball_function. Three variants: right_sided (default, mirrored), left_sided (standard), double_sided (DSCB, npar=6; Kenzie LHCb thesis CERN-THESIS-2012-039)."
+npar: 4
+param_names:
+- mean
+- sigma
+- alpha
+- n
+constants:
+  variant: right_sided
+  param_min: 1.0e-9

@@ -1,0 +1,16 @@
+key: GammaTail
+label: Gamma-distribution tail
+description: |
+  The **Gamma distribution**, introduced by Euler via the Gamma function, is the maximum-entropy distribution for a given mean and mean logarithm on the positive real line.
+  It arises as the sum of k independent exponential random variables (total waiting time in a Poisson process).
+
+  - In **calorimetry**: electromagnetic shower energy response is well described by a Gamma distribution
+  - In **reliability engineering**: standard model for lifetimes governed by multiple independent failure modes
+
+  Here the onset `x_s` is a free parameter; it is expected to sit below the fit range so that only the falling tail enters the window.
+latex: f(x)=(x-x_{s})^{a}\,e^{-b x}
+reference: https://en.wikipedia.org/wiki/Gamma_distribution
+param_names:
+- a
+- b
+- x_s

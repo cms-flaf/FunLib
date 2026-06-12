@@ -1,0 +1,21 @@
+key: Fano
+label: Fano resonance (atomic / condensed matter)
+description: |
+  The **Fano profile** (**Ugo Fano**, 1961) was derived quantum-mechanically to describe the asymmetric resonances seen in the autoionization spectra of helium — the first quantum interference between a discrete state and a continuum.
+  The asymmetry parameter `q` controls the peak-dip shape:
+
+  - `q → ∞`: symmetric Lorentzian
+  - `q = 0`: symmetric dip
+  - finite `q`: characteristic asymmetric peak-dip profile
+
+  **Fano resonances** are ubiquitous: plasmon resonances in metallic nanoparticles, electromagnetically induced transparency (EIT), resonant tunnelling in semiconductor structures, dark modes in photonic crystals.
+latex: 'f(x)=\dfrac{(q+\varepsilon)^{2}}{1+\varepsilon^{2}},\ \varepsilon=\dfrac{x-x_{0}}{\Gamma}\;(\Gamma\text{: half-width})'
+reference: https://en.wikipedia.org/wiki/Fano_resonance
+param_names:
+- x0
+- Gamma
+- q
+constants:
+  Gamma_min: 1.0e-9
+minimization:
+  max_function_calls: 3000

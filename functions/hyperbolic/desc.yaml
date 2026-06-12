@@ -1,0 +1,20 @@
+key: Hyperbolic
+label: Hyperbolic distribution (finance/turbulence)
+description: |
+  The **Hyperbolic distribution** (**Ole Barndorff-Nielsen**, 1977) was introduced to describe the grain-size distribution of wind-blown sand on a log-scale, which forms a hyperbola (not a parabola as in the log-normal).
+  It is a special case of the **Generalized Hyperbolic distribution (GH)**, which includes the NIG, Variance-Gamma, Student-t, and normal as limits.
+
+  Four parameters independently control: **location**, **scale**, **tail heaviness**, and **skewness**.
+
+  Core applications: **financial mathematics** (Eberlein & Keller, 1995, log-return modelling), turbulent velocity fluctuations, and aeolian sedimentology.
+latex: f(x)=\exp\!\left[-\alpha\sqrt{\delta^{2}+(x-\mu)^{2}}+\beta(x-\mu)\right]
+reference: https://en.wikipedia.org/wiki/Hyperbolic_distribution
+param_names:
+- alpha
+- delta
+- beta
+- mu
+constants:
+  exp_max: 700.0
+minimization:
+  max_function_calls: 500

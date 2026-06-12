@@ -1,0 +1,33 @@
+key: "LandauxBern-{npar-1}"
+label: "Landau × Bernstein-{npar-1}"
+description: |
+  The **Landau distribution** (**L.D. Landau**, 1944) was derived analytically to describe
+  statistical fluctuations of **ionisation energy loss** of a relativistic charged particle
+  traversing a thin absorber.
+
+  The **Bernstein-n polynomial** provides residual shape flexibility to absorb higher-order
+  corrections.  Both variants use the same Bernstein kernel; the only difference is whether
+  the MPV μ is fixed at `landau_mpv` or left as a free parameter.
+  - **fixed_mpv** (default): n_terms = Bernstein degree, last parameter is sigma.
+  - **free_mpv**: n_terms = Bernstein degree, first two parameters are mpv and sigma.
+latex:
+- when: {variant: free_mpv}
+  formula: 'f(x)=\mathrm{Landau}(x;\mu,\sigma)\!\left[(1-t)^{n}+\sum_{k=1}^{n}\binom{n}{k}c_{k}\,t^{k}(1-t)^{n-k}\right],\ \ t=\dfrac{x-x_{\min}}{x_{\max}-x_{\min}}'
+- when: {}
+  formula: 'f(x)=\mathrm{Landau}(x;\mu_{0},\sigma)\!\left[(1-t)^{n}+\sum_{k=1}^{n}\binom{n}{k}c_{k}\,t^{k}(1-t)^{n-k}\right],\ \ t=\dfrac{x-x_{\min}}{x_{\max}-x_{\min}}'
+reference: https://en.wikipedia.org/wiki/Landau_distribution
+# npar and param_names are intentionally absent: variable-npar kernel.
+# n_terms constant (set per entry in all_functions.yaml) is the Bernstein degree.
+# npar = n_terms+1 (fixed_mpv) or n_terms+2 (free_mpv).
+latex_var_map:
+  mu_0: landau_mpv
+  n: n_terms
+roofit_param_bounds:
+  sigma:
+  - 0.05
+  - 20.0
+constants:
+  landau_mpv: 91.1876
+minimization:
+  strategy: 2
+  max_function_calls: 10000

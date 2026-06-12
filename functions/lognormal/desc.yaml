@@ -1,0 +1,14 @@
+key: LogNormal
+label: Log-normal
+description: |
+  The **log-normal distribution** arises when the logarithm of a random variable is normally distributed — a consequence of the **central limit theorem** applied to multiplicative random processes (**Galton**, 1879).
+
+  Describes: particle multiplicity distributions in hadronic collisions, cluster-size spectra in calorimeters, **stock price returns** (Black-Scholes model), city population sizes, and chemical reaction rate constants.
+  In **accelerator physics** it models beam emittance growth under multiple small-angle scattering events.
+latex: f(x)=\dfrac{\mu}{x}\exp\!\left[-\dfrac{(\ln x-\mu)^{2}}{2\sigma^{2}}\right]
+reference: https://en.wikipedia.org/wiki/Log-normal_distribution
+param_names:
+- mu
+- sigma
+constants:
+  sigma_min: 1.0e-9

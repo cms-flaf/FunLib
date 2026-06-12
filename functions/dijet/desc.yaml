@@ -1,0 +1,18 @@
+key: Dijet
+label: Dijet / QCD function
+description: |
+  The standard **QCD dijet background function** (**Baur, Berger & Ferreira**, 1988; CDF, D0, early LHC) describes the invariant-mass spectrum from t-channel gluon exchange.
+  Falls as a power law modified by logarithmic corrections, reflecting the convolution of steeply falling PDFs with the partonic cross section.
+
+  Used in **ATLAS and CMS** dijet and resonance searches (e.g., CMS-EXO-16-056) as a reference shape over many decades in invariant mass.
+  npar = number of free shape parameters (minimum 3; npar=4 is the "Dijet5" extension).
+latex: f(x)=(1-y)^{p_{1}}\,y^{-(p_{2}+p_{3}\ln y)},\ \ y=x/\sqrt{s}
+reference: https://arxiv.org/abs/1010.0203
+npar: 3
+param_names: [p1, p2, p3]
+# param_names above reflect the minimum (npar=3) case; variable-npar kernel can have npar=4,5,…
+constants:
+  s: 184960000.0 # sqrt(s) = 13.6 TeV
+  exp_max: 700.0
+minimization:
+  max_function_calls: 10000

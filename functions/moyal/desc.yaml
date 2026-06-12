@@ -1,0 +1,16 @@
+key: Moyal
+label: Moyal distribution
+description: |
+  The **Moyal distribution** (**J.E. Moyal**, 1955) is an exact closed-form approximation to the Landau distribution, obtained by truncating the characteristic function expansion at first order.
+  Moyal originally derived it in the context of **quantum mechanics** — it is the Wigner quasi-probability function for the harmonic oscillator ground state.
+
+  Widely used in **detector physics** as a faster-to-evaluate substitute for the Landau.
+  The simpler analytic form `exp(−(t + e^{−t})/2)` makes numerical integration significantly faster.
+latex: f(x)=\exp\!\left[-\tfrac{1}{2}\left(z+e^{-z}\right)\right],\ \ z=\dfrac{x-\mu}{\sigma}
+reference: https://en.wikipedia.org/wiki/Moyal_distribution
+param_names:
+- mu
+- sigma
+constants:
+  exp_max: 700.0
+  param_min: 1.0e-9

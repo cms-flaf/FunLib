@@ -1,0 +1,20 @@
+key: Levy
+label: Lévy (stable) distribution
+description: |
+  The **Lévy distribution** (**Paul Lévy**, 1924) is a stable distribution with index α = 1/2 and the **heaviest power-law tail** among the one-sided stable laws: `f(x) ∝ x^{−3/2}`.
+
+  It is the exact distribution of **first-passage times** of Brownian motion, and appears in:
+
+  - **Anomalous diffusion** (Lévy flights) in plasma physics and optics
+  - **Financial markets** (Mandelbrot's cotton price model)
+
+  Its very heavy tail (infinite variance and mean) is useful primarily as an **informative negative** — demonstrating that the data require a softer tail.
+latex: f(x)=\sqrt{\dfrac{\mathrm{scale}}{2\pi}}\,(x-\mathrm{loc})^{-3/2}\,e^{-\mathrm{scale}/(2(x-\mathrm{loc}))}
+reference: https://en.wikipedia.org/wiki/L%C3%A9vy_distribution
+param_names:
+- loc
+- scale
+constants:
+  scale_min: 1.0e-9
+minimization:
+  max_function_calls: 500

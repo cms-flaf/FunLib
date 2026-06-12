@@ -1,0 +1,19 @@
+key: PearsonVII
+label: Pearson VII (gen. Lorentzian)
+description: |
+  **Karl Pearson's type VII distribution** (1895) is a symmetric power-law generalisation of the Cauchy and Student-t distributions:
+  `f(x) ∝ [1 + (x − μ)²/a²]^{−m}`
+
+  - **m = 1**: Cauchy/Lorentzian
+  - **m → ∞**: Gaussian
+
+  Standard lineshape in **X-ray powder diffraction** ("Pearson VII peak"), **SAXS**, and neutron crystallography.
+  Its controllable tail exponent is useful wherever the tail decay rate between Gaussian and Cauchy must be fitted.
+latex: f(x)=\left[1+\left(\dfrac{x-\mu}{\sigma}\right)^{2}\right]^{-m}
+reference: https://en.wikipedia.org/wiki/Pearson_distribution
+param_names:
+- mu
+- sigma
+- m
+constants:
+  sigma_min: 1.0e-9

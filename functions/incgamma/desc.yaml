@@ -1,0 +1,29 @@
+key: IncGammaUpper
+label: Upper incomplete gamma Γ(s,bx)/Γ(s)
+description: |
+  The **regularised incomplete Gamma function** (**Legendre**, early 19th century)
+  arises as the CDF/complementary CDF of the Gamma distribution.  Two variants are
+  supported via ``constants["variant"]``:
+
+  **upper** (default): regularised upper incomplete gamma
+  ``Q(s,z) = Γ(s,z)/Γ(s) = 1/Γ(s) ∫_z^∞ t^{s-1}e^{-t}dt``.
+  Monotonically decreasing — matches the falling dimuon background.
+  Special case with s→0: reduces to the exponential integral E₁(z).
+
+  **lower**: regularised lower incomplete gamma
+  ``P(s,z) = γ(s,z)/Γ(s) = 1/Γ(s) ∫_0^z t^{s-1}e^{-t}dt``.
+  Monotonically increasing; complementary to the upper variant (P + Q = 1).
+latex:
+- when: {variant: upper}
+  formula: 'f(x)=\dfrac{1}{\Gamma(s)}\int_{b\,x}^{\infty}t^{s-1}e^{-t}\,dt=\mathrm{IncUpperGamma}(s,b\,x)'
+- when: {variant: lower}
+  formula: 'f(x)=\dfrac{1}{\Gamma(s)}\int_{0}^{b\,x}t^{s-1}e^{-t}\,dt=\mathrm{IncLowerGamma}(s,b\,x)'
+reference: https://en.wikipedia.org/wiki/Incomplete_gamma_function
+param_names:
+- s
+- b
+constants:
+  s_min: 1.0e-9
+  variant: upper
+minimization:
+  max_function_calls: 500

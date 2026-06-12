@@ -1,0 +1,22 @@
+key: NIG
+label: Normal-Inverse-Gaussian
+description: |
+  The **Normal-Inverse-Gaussian (NIG) distribution** (**O. Barndorff-Nielsen**, 1977) arises as the distribution of a Brownian motion evaluated at a random time governed by an **Inverse-Gaussian** stopping time.
+  It is a special case of the **Generalized Hyperbolic distribution** and a Lévy process — sums of NIG variables remain NIG.
+
+  Applications:
+
+  - **Financial return modelling** (Rydberg, 1997)
+  - **Turbulent velocity increments** (Barndorff-Nielsen, 1998)
+latex: f(x)=\dfrac{a}{\pi\,\mathrm{scale}\sqrt{1+z^{2}}}K_{1}\!\left(a\sqrt{1+z^{2}}\right)\exp\!\left(\sqrt{a^{2}-(a\tanh(b))^{2}}+(a\tanh(b))\,z\right),\
+  z=\dfrac{x-\mathrm{loc}}{\mathrm{scale}}
+reference: https://en.wikipedia.org/wiki/Normal-inverse_Gaussian_distribution
+param_names:
+- a
+- b
+- loc
+- scale
+constants:
+  param_min: 1.0e-6
+minimization:
+  max_function_calls: 8000

@@ -1,0 +1,19 @@
+key: BWZ
+label: BW Z propagator
+description: |
+  Fixed-width relativistic Breit-Wigner Z-boson propagator.
+latex: 'f(x)=\dfrac{1}{(x^{2}-M_{Z}^{2})^{2}+(M_{Z}\,G_{Z})^{2}}'
+latex_var_map:
+  MZ: "m"
+  GZ: "Gamma"
+reference: https://en.wikipedia.org/wiki/Relativistic_Breit%E2%80%93Wigner_distribution
+
+npar: 0
+param_names: []
+
+constants:
+  m: 91.1876        # M_Z (GeV)
+  Gamma: 2.4952     # Gamma_Z (GeV)
+  is_lorentzian: false
+  is_running: false
+  free_power: false

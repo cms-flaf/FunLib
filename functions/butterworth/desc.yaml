@@ -1,0 +1,17 @@
+key: Butterworth
+label: Butterworth filter rolloff
+description: |
+  The **Butterworth filter** (**Stephen Butterworth**, 1930) was designed to have the **flattest possible passband** (maximally flat magnitude response) with a monotonically decreasing rolloff.
+  Its transfer function `|H(f)|² = 1/(1 + (f/f_c)^{2n})` is the prototype for all analog and digital low-pass filter design.
+
+  Applications: **audio engineering**, telecommunications, control systems, biomedical signal processing (EEG/ECG).
+  As a background shape, it provides a smooth threshold-to-power-law transition controlled by order n and cutoff frequency f_c.
+latex: f(x)=\dfrac{1}{\sqrt{1+(x/x_{c})^{2k}}}
+reference: https://en.wikipedia.org/wiki/Butterworth_filter
+param_names:
+- xc
+- k
+constants:
+  xc_min: 1.0e-9
+minimization:
+  max_function_calls: 500

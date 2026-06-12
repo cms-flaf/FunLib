@@ -1,0 +1,19 @@
+key: BWZxExp
+label: 'BWZ #times exp(quad)'
+description: |
+  The Breit-Wigner Z kernel for the Z lineshape.
+  Corresponds to the **RooModZPdf** (HMuMuRooPdfs.cc v10.6.0) with free quadratic
+  parameter b and no Bernstein polynomial.
+latex: 'f(x)=\dfrac{1}{(x^{2}-M_{Z}^{2})^{2}+(M_{Z}\,G_{Z})^{2}}\exp\!\left(a\,x^{\prime}+b\,x^{\prime2}\right),\
+  \ x^{\prime}=\dfrac{2(x-x_{mid})}{x_{\max}-x_{\min}}'
+reference: https://arxiv.org/abs/2009.04363
+latex_var_map:
+  MZ: "m"
+  GZ: "Gamma"
+param_names:
+- a
+- b
+constants:
+  m: 91.1876
+  Gamma: 2.4952
+  exp_max: 700.0  # upper clamp for a*x' + b*x'^2 before exp()

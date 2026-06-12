@@ -1,0 +1,19 @@
+key: InvGamma
+label: Inverse-Gamma
+description: |
+  The **Inverse-Gamma distribution** is the distribution of 1/X when X is Gamma-distributed.
+  It arises as the **conjugate prior** for the variance of a normal distribution in Bayesian inference.
+
+  Applications:
+
+  - **Bayesian hierarchical modelling**: variance prior
+  - **Finance**: volatility modelling of asset returns (Student-t as normal-inverse-gamma mixture)
+  - **Reliability**: mean time between failures when the failure rate is Gamma-distributed
+latex: f(x)=\dfrac{1}{\mathrm{scale}\,\Gamma(a)}\left(\dfrac{x-\mathrm{loc}}{\mathrm{scale}}\right)^{-a-1}e^{-\mathrm{scale}/(x-\mathrm{loc})}
+reference: https://en.wikipedia.org/wiki/Inverse-gamma_distribution
+param_names:
+- a
+- loc
+- scale
+constants:
+  param_min: 1.0e-9

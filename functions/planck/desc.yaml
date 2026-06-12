@@ -1,0 +1,18 @@
+key: Planck
+label: Planck / Bose–Einstein spectrum (thermal)
+description: |
+  **Planck's blackbody radiation law** (**Max Planck**, 1900) was the first quantum formula in physics — resolving the ultraviolet catastrophe by quantising electromagnetic energy.
+  The spectral radiance `B_ν ∝ ν³ / (e^{hν/kT} − 1)` is the **Bose-Einstein distribution** times a density-of-states factor.
+
+  It governs: the **cosmic microwave background** (T = 2.725 K), stellar atmospheres, thermal emission from AGN accretion discs, and laser cooling experiments.
+  As a background shape it provides a **rising-then-falling hump** with steep high-energy exponential suppression.
+latex: f(x)=\dfrac{x^{p}}{e^{x/T}-1}
+reference: https://en.wikipedia.org/wiki/Planck%27s_law
+param_names:
+- p
+- T
+constants:
+  exp_max: 700.0
+  T_min: 1.0e-9
+minimization:
+  max_function_calls: 500

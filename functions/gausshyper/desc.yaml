@@ -1,0 +1,29 @@
+key: GaussHyper
+label: Gauss hypergeometric ₂F₁
+description: |
+  **Gauss's hypergeometric function** ₂F₁(a, b; c; z) (**Carl Friedrich Gauss**, 1812) is perhaps the most general classical special function: virtually every common function is a special case.
+  The **24 Kummer relations** connect different parameter values, giving immense analytical flexibility.
+
+  Examples of special cases:
+
+  - Legendre, Gegenbauer, Jacobi polynomials
+  - Complete elliptic integrals
+  - Beta distribution CDF
+
+  The very general analytic structure makes this a strong candidate for parametrizing complex spectral shapes.
+latex: f(x)={}_{2}F_{1}(a,b;c;-x/x_{mid})
+reference: https://en.wikipedia.org/wiki/Hypergeometric_function
+param_names:
+- a
+- b
+- c
+constants:
+  ab_bound: 20.0
+  c_min: 0.1
+  c_max: 30.0
+validate_params:
+- 10.0
+- 3.73475
+- 1.73574
+minimization:
+  max_function_calls: 3000

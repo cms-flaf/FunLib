@@ -1,0 +1,22 @@
+key: SkewNormal
+label: Skew-normal
+description: |
+  The **skew-normal distribution** (**Azzalini**, 1985) extends the Gaussian by adding a single shape parameter α that continuously controls the degree and direction of skewness, recovering the normal at α = 0.
+
+  Applications:
+
+  - Mildly asymmetric **measurement errors**
+  - **Reaction-time distributions** in psychology
+  - **Wind speed data** in meteorology
+  - **Environmental pollutant concentrations**
+
+  **Azzalini & Capitanio** (1999) extended it to the multivariate case, forming the basis of modern skew-elliptical distributions in Bayesian modelling.
+latex: f(x)=\dfrac{2}{\mathrm{scale}}\,\phi(z)\,\Phi(a\,z),\ \ z=(x-\mathrm{loc})/\mathrm{scale}
+reference: https://en.wikipedia.org/wiki/Skew_normal_distribution
+param_names:
+- a
+- loc
+- scale
+constants: {}
+minimization:
+  max_function_calls: 500

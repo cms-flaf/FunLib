@@ -1,0 +1,15 @@
+key: Landau
+label: Landau distribution
+description: |
+  The **Landau distribution** (**L.D. Landau**, 1944) was derived analytically to describe
+  statistical fluctuations of **ionisation energy loss** of a relativistic charged particle
+  traversing a thin absorber.  It has a characteristic right-skewed heavy tail with MPV
+  (most probable value) μ and width σ as free parameters.
+latex: 'f(x)=\mathrm{LandauPDF}(x,\mu,\sigma)'
+reference: https://en.wikipedia.org/wiki/Landau_distribution
+param_names:
+- mpv
+- sigma
+npar: 2
+constants:
+  param_min: 1.0e-9

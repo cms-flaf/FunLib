@@ -1,0 +1,26 @@
+key: MittagLeffler
+label: Mittag-Leffler (fractional calculus)
+description: |
+  The **Mittag-Leffler function** (**Gösta Mittag-Leffler**, 1903) `E_α(z) = ∑ z^k / Γ(αk+1)` is the natural generalisation of the exponential `e^z` to **fractional-order dynamics**:
+
+  - **α = 1**: reduces to `e^z`
+  - **α = 1/2**: reduces to the complementary error function
+
+  It is the solution to the **fractional relaxation equation** `d^α f/dt^α = −λf`, describing:
+
+  - Non-Debye (stretched exponential) relaxation in **dielectric spectroscopy**
+  - **Anomalous diffusion** in biological tissues and polymer networks
+  - **Subdiffusion** in crowded cellular environments
+  - Memory effects in **option pricing** under fractal market hypotheses
+latex: f(x)=E_{\alpha}(-x/\tau),\ E_{\alpha}(z)=\sum_{k}z^{k}/\Gamma(\alpha k+1)
+reference: https://en.wikipedia.org/wiki/Mittag-Leffler_function
+param_names:
+- alpha
+- tau
+constants:
+  series_limit: 8.0
+  lt_cutoff: 60.0
+  alpha_min: 1.0e-3
+  tau_min: 1.0e-9
+minimization:
+  max_function_calls: 3000

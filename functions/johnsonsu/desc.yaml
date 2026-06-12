@@ -1,0 +1,20 @@
+key: JohnsonSU
+label: Johnson S_{U}
+description: |
+  The **Johnson S_U (unbounded) distribution** (**N.L. Johnson**, 1949) was designed to cover the **full skewness-kurtosis plane** through the normalising transformation:
+  `z = γ + δ · asinh((x − ξ)/λ)`, which maps to a standard normal.
+
+  Together with the SB (bounded) and SL (log-normal) variants, the Johnson family was the **first complete system** of distributions covering all attainable (skewness², kurtosis) pairs.
+
+  Applications: **quality engineering** (Six Sigma), hydrology, and actuarial science.
+latex: f(x)=\dfrac{b}{\sigma\sqrt{1+w^{2}}}\,\phi\!\left(a+b\,\mathrm{arcsinh}(w)\right),\ w=\dfrac{x-\mathrm{loc}}{\sigma}
+reference: https://en.wikipedia.org/wiki/Johnson%27s_SU-distribution
+param_names:
+- a
+- b
+- loc
+- scale
+constants:
+  param_min: 1.0e-9
+minimization:
+  max_function_calls: 5000

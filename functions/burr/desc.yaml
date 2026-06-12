@@ -1,0 +1,21 @@
+key: Burr
+label: Burr XII (Singh-Maddala)
+description: |
+  The **Burr type XII distribution** (**Irving Burr**, 1942) was constructed to cover a wide range of skewness–kurtosis combinations in a single parametric family.
+  It is equivalent to the **Singh-Maddala** distribution used in income modelling.
+
+  Applications:
+
+  - **Actuarial science**: loss distributions and extreme-value modelling
+  - **Reliability engineering** and environmental science (flood and wind data)
+  - Closed-form CDF `F(x) = 1 − (1 + (x/c)^k)^{−d}` makes MLE convenient
+latex: f(x)=\dfrac{c\,k\,u^{c-1}}{(1+u^{c})^{k+1}},\ \ u=x/s
+reference: https://en.wikipedia.org/wiki/Burr_distribution
+param_names:
+- s
+- c
+- k
+constants:
+  exp_max: 700.0
+  log1p_cutoff: 30.0
+  param_min: 1.0e-9

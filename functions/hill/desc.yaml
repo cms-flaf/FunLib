@@ -1,0 +1,20 @@
+key: Hill
+label: Hill equation (biochemistry)
+description: |
+  The **Hill equation** (**A.V. Hill**, 1910) was derived from the cooperative binding of oxygen to haemoglobin.
+  `Y = p^n / (K^n + p^n)`, where n is the **Hill coefficient** quantifying cooperativity:
+
+  - **n > 1**: positive cooperativity (e.g., haemoglobin)
+  - **n = 1**: Michaelis-Menten enzyme kinetics
+
+  Applied across biochemistry for **dose-response curves** (pharmacology, EC₅₀ estimation), gene expression regulation, and species-area relationships in ecology.
+  The sigmoidal shape with a power-law tail at large argument provides a flexible onset-to-plateau transition.
+latex: f(x)=\dfrac{1}{1+(x/K)^{h}}
+reference: https://en.wikipedia.org/wiki/Hill_equation_(biochemistry)
+param_names:
+- K
+- h
+constants:
+  K_min: 1.0e-9
+minimization:
+  max_function_calls: 500

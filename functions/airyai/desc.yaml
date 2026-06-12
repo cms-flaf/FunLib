@@ -1,0 +1,24 @@
+key: AiryAi
+label: Airy Ai
+description: |
+  Ai(x) is a solution of y'' = xy (**G. B. Airy**, 1838).
+  For x > 0, Ai(x) has a super-exponential decaying tail, while for x < 0, Ai(x) oscillates.
+  The solution appears in:
+  - the **WKB approximation** to quantum mechanics near classical turning points
+  - **diffraction of light** at a curved interface
+  - **plasma physics** (wave propagation near a cutoff layer)
+  - the **Tracy-Widom distribution** in random matrix statistics
+latex: f(x)=\mathrm{Ai}(a\,x+b)
+reference: https://en.wikipedia.org/wiki/Airy_function
+
+npar: 2
+param_names:
+- a
+- b
+
+constants:
+  arg_lo: -50.0   # Ai oscillates for arg < arg_lo — clamp to 0
+  arg_hi: 100.0   # Ai underflows to ~0 for arg > arg_hi — clamp to 0
+
+minimization:
+  max_function_calls: 500

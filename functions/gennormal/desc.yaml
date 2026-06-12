@@ -1,0 +1,22 @@
+key: GenNormal
+label: Generalized normal (Subbotin)
+description: |
+  The **Generalized Normal distribution** (**Subbotin**, 1923; **Nadarajah**, 2005) — also called the exponential power distribution.
+  Interpolates between:
+
+  - **β = 1**: Laplace (double-exponential)
+  - **β = 2**: Gaussian (normal)
+  - **β → ∞**: uniform distribution
+
+  Used in **image processing** (sparse-prior modelling) and **audio encoding** (DCT coefficient distributions).
+latex: f(x)=\dfrac{\beta}{2\,\mathrm{scale}\,\Gamma(1/\beta)}\exp\!\left(-\left(\dfrac{|x-\mathrm{loc}|}{\mathrm{scale}}\right)^{\!\beta}\right)
+reference: https://en.wikipedia.org/wiki/Generalized_normal_distribution
+param_names:
+- beta
+- loc
+- scale
+constants:
+  beta_min: 1.0e-6
+  scale_min: 1.0e-9
+minimization:
+  max_function_calls: 3000

@@ -1,0 +1,19 @@
+key: Frechet
+label: Frechet (inverse Weibull)
+description: |
+  The **Fréchet distribution** (**Maurice Fréchet**, 1927) — also called the inverse Weibull — is the extreme-value distribution for parent distributions with **power-law tails** (e.g., Pareto).
+  It arises as the limiting distribution of sample maxima when the parent tail falls as `F̄(x) ∝ x^{−α}`.
+
+  Applications:
+
+  - **Hydrology**: flood return periods
+  - **Ocean engineering**: sea wave heights
+  - **Financial risk management**
+  - **AGN spectral energy distributions** in astrophysics
+latex: f(x)=u^{-1-\alpha}\,e^{-u^{-\alpha}},\ \ u=x/s
+reference: https://en.wikipedia.org/wiki/Fr%C3%A9chet_distribution
+param_names:
+- s
+- alpha
+constants:
+  s_min: 1.0e-9

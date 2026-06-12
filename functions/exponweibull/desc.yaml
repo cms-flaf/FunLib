@@ -1,0 +1,21 @@
+key: ExponWeibull
+label: Exponentiated Weibull
+description: |
+  The **Exponentiated Weibull distribution** (**Mudholkar & Srivastava**, 1993) generalises the Weibull by raising the CDF to a power — adding a second shape parameter a for significantly more flexibility.
+
+  Applications:
+
+  - **Survival analysis**: cancer patient lifetimes
+  - **Hydrology**: extreme rainfall modelling
+  - **Civil engineering**: fatigue life of materials
+latex: f(x)=\dfrac{a\,c}{\mathrm{scale}}\,z^{c-1}e^{-z^{c}}\!\left(1-e^{-z^{c}}\right)^{a-1},\ z=\dfrac{x-\mathrm{loc}}{\mathrm{scale}}
+reference: https://en.wikipedia.org/wiki/Exponentiated_Weibull_distribution
+param_names:
+- a
+- c
+- loc
+- scale
+constants:
+  param_min: 1.0e-9
+minimization:
+  max_function_calls: 5000

@@ -1,0 +1,21 @@
+key: "SumBesselK0-{n_terms}"
+label: "Sum of {n_terms} K_0 Bessel terms"
+description: |
+  Sum of N = n_terms modified Bessel K_0 terms with 2N−1 shape parameters:
+    n_terms=1: K_0(a_1 x)
+    n_terms=2: K_0(a_1 x) + R_2 K_0(a_2 x)
+    n_terms=3: + R_3 K_0(a_3 x)
+  R_1 ≡ 1 is fixed; R_2, R_3, … are free amplitude ratios.
+
+  K_0 arises in CSS resummation (Sudakov form factor for low-pT DY production),
+  is the free-space Green's function of the 2D Helmholtz equation, and the
+  propagator of a massive scalar in Euclidean thermal field theory.
+latex: 'f(x)=\sum_{k=1}^{n}R_k\,K_{0}(a_k\,x)'
+latex_var_map:
+  n: n_terms
+reference: https://en.wikipedia.org/wiki/Bessel_function
+# n_terms constant (set per entry in all_functions.yaml) drives npar = 2*n_terms-1.
+constants:
+  R1: 1.0
+minimization:
+  max_function_calls: 10000

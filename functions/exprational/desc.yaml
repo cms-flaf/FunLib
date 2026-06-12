@@ -1,0 +1,18 @@
+key: "ExpRational-{num_deg}/{den_deg}"
+label: "exp(rational [{num_deg}/{den_deg}])"
+description: |
+  Combines the **positivity guarantee** of the exponent with the **pole-capturing flexibility** of a Pade rational approximant.
+
+  - Used in models of quantum partition functions and in **resurgence theory** for trans-series expansions of asymptotic QFT series
+  - The [2/1] rational inside the exponent matches the **QCD DGLAP** (Dokshitzer-Gribov-Lipatov-Altarelli-Parisi) evolution at NLO
+latex: 'f(x)=\exp\!\left(\dfrac{1+\sum_{i=1}^{m}a_{i}t^{i}}{1+\sum_{j=1}^{n}b_{j}t^{j}}\right),\ \ t=\dfrac{2(x-x_{mid})}{x_{\max}-x_{\min}}'
+latex_var_map:
+  m: num_deg
+  n: den_deg
+reference: https://en.wikipedia.org/wiki/Pad%C3%A9_approximant
+constants:
+  num_deg: 2
+  den_deg: 1
+  exp_max: 700.0
+# npar and param_names are intentionally absent: variable-degree [m/n] kernel.
+# Default [2/1] shown in latex; general: exp((1+sum_i a_i t^i)/(1+sum_j b_j t^j)).

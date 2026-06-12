@@ -1,0 +1,21 @@
+key: Gompertz
+label: Gompertz
+description: |
+  The **Gompertz distribution** (**Benjamin Gompertz**, 1825) was introduced to model human mortality rates that increase exponentially with age (Gompertz's law).
+  It is a **doubly-exponential** (Gumbel-type) distribution with a strong right tail, related to the log-Weibull.
+
+  Applications:
+
+  - **Actuarial science**: life tables and annuities
+  - **Cancer tumour growth kinetics**: tumour cells grow at a rate proportional to size × decaying factor
+  - **Bacterial growth saturation** models in microbiology
+latex: f(x)=\dfrac{c}{\mathrm{scale}}\,e^{z}\exp(-c(e^{z}-1)),\ \ z=(x-\mathrm{loc})/\mathrm{scale}
+reference: https://en.wikipedia.org/wiki/Gompertz_distribution
+param_names:
+- c
+- loc
+- scale
+constants:
+  param_min: 1.0e-9
+minimization:
+  max_function_calls: 500

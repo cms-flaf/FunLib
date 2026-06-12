@@ -1,0 +1,24 @@
+key: FatigueLife
+label: Birnbaum–Saunders fatigue life (reliability)
+description: |
+  The **Birnbaum-Saunders distribution** (**Z.W. Birnbaum & S.C. Saunders**, 1969) was derived from a physical model of crack growth under cyclic stress.
+  The lifetime is the time for accumulated damage to exceed a threshold — an inverse-Gaussian-related distribution.
+
+  Applications:
+
+  - **Civil engineering**: bridge fatigue life
+  - **Aerospace**: structural component lifetimes
+  - **Mechanical engineering**: gear wear
+
+  Parameters have direct physical interpretation: characteristic crack size and variability.
+latex: f(x)=\dfrac{\sqrt{z}+z^{-1/2}}{2c(x-\mathrm{loc})}\,\phi\!\left(\dfrac{\sqrt{z}-z^{-1/2}}{c}\right),\ z=\dfrac{x-\mathrm{loc}}{\mathrm{scale}},\
+  \phi(u)=\dfrac{1}{\sqrt{2\pi}}e^{-u^{2}/2}
+reference: https://en.wikipedia.org/wiki/Birnbaum%E2%80%93Saunders_distribution
+param_names:
+- c
+- loc
+- scale
+constants:
+  param_min: 1.0e-9
+minimization:
+  max_function_calls: 3000

@@ -1,0 +1,19 @@
+key: EMG
+label: Exponentially-Modified Gaussian
+description: |
+  The **Exponentially-Modified Gaussian (EMG)** is the exact convolution of a Gaussian peak (measurement error) with an exponential decay (chemical or instrumental tailing).
+  Introduced in **chromatography** (**Grushka**, 1972) to describe asymmetric elution peaks.
+
+  Applications:
+
+  - Standard lineshape in **liquid/gas chromatography**, mass spectrometry, and capillary electrophoresis
+  - **Neuroscience**: models reaction-time distributions (ex-Gaussian model)
+  - The exponential tail mimics a slow adsorption/desorption process superimposed on a fast Gaussian measurement
+latex: f(x)=\dfrac{1}{2K\,\mathrm{scale}}\exp\!\left(\dfrac{2\,\mathrm{loc}+\mathrm{scale}/K-2x}{2K\,\mathrm{scale}}\right)\,\mathrm{erfc}\!\left(\dfrac{\mathrm{loc}+\mathrm{scale}/K-x}{\sqrt{2}\,\mathrm{scale}}\right)
+reference: https://en.wikipedia.org/wiki/Exponentially_modified_Gaussian_distribution
+param_names:
+- K
+- loc
+- scale
+constants:
+  param_min: 1.0e-6

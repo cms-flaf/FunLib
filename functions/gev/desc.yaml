@@ -1,0 +1,22 @@
+key: GEV
+label: Generalized Extreme Value
+description: |
+  The **Generalized Extreme Value (GEV) distribution** is the universal limit law for the maximum of a large i.i.d. sample (**Fisher-Tippett-Gnedenko theorem**, 1928/1943).
+  Three sub-families unify all tail behaviours:
+
+  - **ξ = 0**: Gumbel (Type I)
+  - **ξ > 0**: Fréchet (Type II, power-law tail)
+  - **ξ < 0**: Weibull (Type III, bounded)
+
+  Foundation of extreme-value theory used in flood forecasting, structural engineering, financial risk, and climate science.
+latex: f(x)=(1+\xi z)^{-1-1/\xi}\exp\!\left[-(1+\xi z)^{-1/\xi}\right],\ \ z=\dfrac{x-\mu}{\sigma}
+reference: https://en.wikipedia.org/wiki/Generalized_extreme_value_distribution
+param_names:
+- mu
+- sigma
+- xi
+constants:
+  param_min: 1.0e-9
+  xi_eps: 1.0e-8
+minimization:
+  max_function_calls: 5000

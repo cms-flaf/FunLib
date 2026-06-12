@@ -1,0 +1,24 @@
+key: "S-Exp-{n_terms}"
+label: "Sum of {n_terms} exponentials ({npar} shape params)  (CMS AN-19-090)"
+description: |
+  Sum of N = n_terms exponential terms with 2N−1 shape parameters:
+    n_terms=1: exp(b1·x)
+    n_terms=2: exp(b1·x) + A2·exp(b2·x)
+    n_terms=3: + A3·exp(b3·x)
+  A1 ≡ 1 is fixed; A2, A3, … are free amplitude ratios.
+
+  **Exponential distributions** arise as the maximum-entropy distribution for a given
+  mean and as the waiting-time distribution of a Poisson process.
+  In QCD, individual parton hard-scattering cross-sections often fall approximately
+  exponentially at low mass.
+# npar and param_names are intentionally absent: variable-npar kernel.
+# n_terms constant (set per entry in all_functions.yaml) drives npar = 2*n_terms-1.
+latex: 'f(x)=\sum_{k=1}^{n}A_k\,e^{b_k x}'
+latex_var_map:
+  n: n_terms
+reference: https://arxiv.org/abs/2009.04363
+constants:
+  exp_max: 700.0
+  A1: 1.0
+minimization:
+  max_function_calls: 10000

@@ -1,0 +1,23 @@
+key: KummerM
+label: Kummer M (₁F₁, Kummer equation)
+description: |
+  **Kummer's confluent hypergeometric function** M(a, b, z) = ₁F₁(a; b; z) (**E. Kummer**, 1836) is a power-series solution to the confluent hypergeometric ODE.
+
+  Special cases include: **Bessel functions**, **parabolic cylinder functions**, **Laguerre polynomials**, **Hermite polynomials**, and the **error function**.
+  In statistics it appears in the **non-central chi-squared** and non-central F distributions.
+
+  In mathematical physics it is widely used; it is the _growing_ solution at infinity — complemented by the decaying Tricomi U.
+latex: f(x)=M(a,\,b,\,-c\,x)={}_{1}F_{1}(a;\,b;\,-c\,x)
+reference: https://en.wikipedia.org/wiki/Confluent_hypergeometric_function
+param_names:
+- a
+- b
+- c
+constants:
+  a_lo: -20.0      # hyp1f1 converges slowly for a outside [a_lo, a_hi] — clamp
+  a_hi: 20.0
+  b_lo: 0.1        # b must not be 0 or a negative integer — clamp to b_lo
+  b_hi: 30.0       # hyp1f1 converges slowly for large b — clamp
+  z_abs_max: 500.0  # clamp |c*x| to prevent divergence
+minimization:
+  max_function_calls: 3000

@@ -1,0 +1,21 @@
+key: BesselKnu
+label: 'Modified Bessel K_{#nu} (order #nu free)'
+description: |
+  The modified Bessel function **Kν** (**Bessel**, 1817; **Watson**, 1922) arises in many physical contexts:
+
+  - radial solution of the **2D Helmholtz equation**
+  - propagator of a massive field in **Euclidean quantum field theory**
+  - **Jüttner-Maxwell-Boltzmann** distribution for relativistic gases (involves K₂)
+  - **Tsallis–Pareto** distribution in heavy-ion physics (K₂-based forms)
+
+  With the order ν as a free parameter, this function continuously interpolates between different exponential-decay rates and power-law prefactors.
+latex: f(x)=K_{\nu}(a\,x)
+reference: https://en.wikipedia.org/wiki/Bessel_function
+param_names:
+- nu
+- a
+constants:
+  z_lo: 1.0e-6   # K_nu(z) diverges as z→0 — clamp to 0
+  nu_max: 5.0    # cyl_bessel_k hangs for large non-integer nu — clamp abs(nu)
+minimization:
+  max_function_calls: 500

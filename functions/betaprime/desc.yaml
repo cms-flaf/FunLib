@@ -1,0 +1,17 @@
+key: BetaPrime
+label: Beta-prime (inverted beta)
+description: |
+  The **Beta Prime distribution** (also Pearson type VI, or the inverted Beta) is the distribution of X/(1−X) when X is Beta-distributed.
+
+  - In **Bayesian statistics**: conjugate prior for the Pareto shape parameter
+  - In **economics**: describes income distributions (Singh-Maddala connection)
+  - Four-parameter form with free location and scale — flexible power-law body × power-law tail
+latex: f(x)=\dfrac{1}{\mathrm{scale}\,B(|a|,|b|)}\,z^{|a|-1}(1+z)^{-|a|-|b|},\ z=\dfrac{x-\mathrm{loc}}{\mathrm{scale}}
+reference: https://en.wikipedia.org/wiki/Beta_prime_distribution
+param_names:
+- a
+- b
+- loc
+- scale
+constants:
+  param_min: 1.0e-9

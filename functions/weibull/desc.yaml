@@ -1,0 +1,19 @@
+key: Weibull
+label: Weibull (stretched exp)
+description: |
+  The **Weibull distribution** (**Waloddi Weibull**, 1951) was developed to model the strength of materials and fatigue life, and has become the **standard reliability engineering model** for component lifetimes.
+  Its flexible hazard-rate function (constant, increasing, or decreasing depending on shape parameter k) covers many failure modes.
+
+  Applications:
+
+  - **Particle size distributions** in comminution (ore grinding)
+  - **Wind speed distributions** in meteorology
+  - **Fragmentation functions** and heavy-quark meson pT spectra in particle physics
+latex: f(x)=\left(\dfrac{x}{\lambda}\right)^{k-1}\exp\!\left[-(x/\lambda)^{k}\right]
+reference: https://en.wikipedia.org/wiki/Weibull_distribution
+param_names:
+- lam
+- k
+constants:
+  exp_max: 700.0    # upper clamp for (x/lam)^k before exp()
+  lam_min: 1.0e-9  # lower bound for |lam| — prevents division by zero

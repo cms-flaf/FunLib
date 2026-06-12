@@ -1,0 +1,23 @@
+key: GenPareto
+label: Generalized Pareto (POT)
+description: |
+  The **Generalized Pareto distribution** (**Pickands**, 1975) is the canonical limiting distribution for excesses above a threshold u in extreme-value theory (Balkema-de Haan-Pickands theorem).
+  It is the mathematical foundation of **peaks-over-threshold (POT) analysis**.
+
+  The shape parameter ξ controls the tail:
+
+  - **ξ > 0**: Pareto (power-law) tail
+  - **ξ = 0**: exponential decay
+  - **ξ < 0**: bounded support
+
+  Applications: flood return periods, insurance risk, financial VaR, network traffic, earthquake magnitudes.
+latex: f(x)=(1+\xi z)^{-1/\xi-1},\ \ z=\dfrac{x-\mu}{\sigma}
+reference: https://en.wikipedia.org/wiki/Generalized_Pareto_distribution
+param_names:
+- mu
+- sigma
+- xi
+constants:
+  exp_max: 700.0
+  param_min: 1.0e-9
+  xi_eps: 1.0e-8

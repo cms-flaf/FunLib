@@ -1,0 +1,18 @@
+key: UA2
+label: UA2 dijet/continuum function
+description: |
+  The **UA2 function** was used by the **UA2 collaboration** (CERN Sp̄pS, 1990s) to parametrize the QCD dijet mass spectrum in the first direct searches for quark compositeness and new gauge bosons at a hadron collider.
+
+  It is a power law `(m/√s)^a × exp(b·(m/√s) + c·(m/√s)²)` motivated by **dimensional counting rules** for parton-level scattering amplitudes, where √s is an effective energy scale.
+  Adapted for CMS high-mass searches and included here as a **cross-validation** against the CMS standard dijet function.
+latex: f(x)=(x/\sqrt{s})^{p_{1}}\,e^{p_{2}(x/\sqrt{s})+p_{3}(x/\sqrt{s})^{2}}
+reference: https://arxiv.org/abs/1010.0203
+param_names:
+- p1
+- p2
+- p3
+constants:
+  s: 40000.0
+  exp_max: 700.0
+minimization:
+  max_function_calls: 10000

@@ -1,0 +1,20 @@
+key: "RationalPade-{num_deg}/{den_deg}"
+label: "Rational (Pade) [{num_deg}/{den_deg}]"
+description: |
+  **Pade approximants** (**H. Pade**, 1892) are rational functions providing the best rational approximation to a given power series at a point.
+  A [m/n] Pade has poles in the complex plane, allowing it to capture resonance-like structures.
+
+  Applications:
+
+  - **Resummation of the perturbative QCD series**
+  - Analytic continuation of **lattice QCD data** from Euclidean to Minkowski space
+latex: 'f(x)=\dfrac{1+\sum_{i=1}^{m}a_{i}t^{i}}{1+\sum_{j=1}^{n}b_{j}t^{j}},\ \ t=\dfrac{2(x-x_{mid})}{x_{\max}-x_{\min}}'
+latex_var_map:
+  m: num_deg
+  n: den_deg
+reference: https://en.wikipedia.org/wiki/Pad%C3%A9_approximant
+constants:
+  num_deg: 2
+  den_deg: 2
+# npar and param_names are intentionally absent: variable-degree [m/n] kernel.
+# General: f(x) = (1 + sum_i a_i t^i) / (1 + sum_j b_j t^j).

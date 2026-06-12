@@ -1,0 +1,19 @@
+key: DoniachSunjic
+label: Doniach–Šunjić XPS lineshape
+description: |
+  The **Doniach–Šunjić line shape** (**S. Doniach & M. Šunjić**, 1970) was derived analytically in condensed matter theory to describe the X-ray photoelectron spectroscopy (XPS) core-level peak of a metallic sample.
+  The photohole excites electron-hole pairs at the Fermi surface (**Anderson orthogonality catastrophe**), producing a power-law low-binding-energy tail.
+
+  - The asymmetry index `α` is directly related to the **phase shift at the Fermi level**
+  - Distinguishes metallic (α > 0) from insulating (α = 0) samples
+  - Standard in **surface-science XPS** fitting codes
+latex: f(x)=\dfrac{\cos[\pi\alpha/2+(1-\alpha)\arctan((x-x_{0})/\gamma)]}{(\gamma^{2}+(x-x_{0})^{2})^{(1-\alpha)/2}}
+reference: https://doi.org/10.1088/0022-3719/3/2/010
+param_names:
+- x0
+- gamma
+- alpha
+constants:
+  gamma_min: 1.0e-9
+minimization:
+  max_function_calls: 3000

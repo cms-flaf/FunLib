@@ -1,0 +1,36 @@
+key: BWZGamma
+label: 'BWZ + #gamma propagator'
+description: |
+  Superposition of the relativistic Z kernel and the gamma* propagator,
+  motivated by the Drell-Yan process pp -> (Z/gamma*) -> ll.
+
+  Parameters (same for all BW variants):
+    a      -- exponential slope in normalised units x' = (x - x_mid) / x_half
+    fZ     -- Z fraction in (0, 1); (1-fZ) is the gamma* weight at x_mid
+
+  f(x) = exp(a*x') * [fZ * BW_norm(x) + (1 - fZ) * (x_mid/x)^2]
+
+  BW_norm(x) = BW(x) / BW(x_mid) is normalised to 1 at the range midpoint.
+latex:
+- when: {is_running: false}
+  formula: 'f(x)=e^{a\,x^{\prime}}\!\left[f_Z\dfrac{(x_{mid}^{2}-M_{Z}^{2})^{2}+(M_{Z}\,G_{Z})^{2}}{(x^{2}-M_{Z}^{2})^{2}+(M_{Z}\,G_{Z})^{2}}+(1-f_Z)\dfrac{x_{mid}^{2}}{x^{2}}\right],\ \ x^{\prime}=\dfrac{x-x_{mid}}{x_{half}}'
+- when: {is_running: true}
+  formula: 'f(x)=e^{a\,x^{\prime}}\!\left[f_Z\dfrac{x^{2}}{x_{mid}^{2}}\cdot\dfrac{(x_{mid}^{2}-M_{Z}^{2})^{2}+(M_{Z}\,G_{Z})^{2}}{(x^{2}-M_{Z}^{2})^{2}+(M_{Z}\,G_{Z})^{2}}+(1-f_Z)\dfrac{x_{mid}^{2}}{x^{2}}\right],\ \ x^{\prime}=\dfrac{x-x_{mid}}{x_{half}}'
+latex_var_map:
+  MZ: "m"
+  GZ: "Gamma"
+reference: https://arxiv.org/abs/2009.04363
+
+npar: 2
+param_names: [a, fZ]
+
+roofit_param_bounds:
+  fZ: [0.001, 0.999]
+
+constants:
+  m: 91.1876        # M_Z (GeV)
+  Gamma: 2.4952     # Gamma_Z (GeV)
+  is_lorentzian: false
+  is_running: false
+  free_power: false
+  exp_max: 700.0    # upper clamp for a*x' before exp()

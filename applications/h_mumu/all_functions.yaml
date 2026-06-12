@@ -1,0 +1,662 @@
+minimization:
+  minimizer: Minuit2
+  algorithm: Migrad
+  tolerance: 0.001
+  max_function_calls: 3000
+  max_iterations: 1000
+  strategy: 1
+  print_level: 0
+  error_def: 1.0
+fit_range:
+  min: 110.0
+  max: 150.0
+  exclude:
+  - - 120.0
+    - 130.0
+reference_integral: 1000000.0
+functions:
+- dir: FunLib/functions/bwz_bern
+  constants:
+    n_terms: 1
+  initial_params:
+  - 1.0
+  - -0.01
+- dir: FunLib/functions/bwz_bern
+  constants:
+    n_terms: 2
+  initial_params:
+  - 1.0
+  - 1.0
+  - -0.01
+- dir: FunLib/functions/bwz_bern
+  constants:
+    n_terms: 3
+  initial_params:
+  - 1.0
+  - 1.0
+  - 1.0
+  - -0.01
+- dir: FunLib/functions/bwz_bern
+  key: "BWZxBern-{npar-1}-rwForm"
+  label: "BWZ (running-width) × Bernstein-{npar-1}"
+  constants:
+    n_terms: 1
+    is_running: true
+  initial_params:
+  - 1.0
+  - -0.01
+- dir: FunLib/functions/bwz_bern
+  key: "BWZxBern-{npar-1}-rwForm"
+  label: "BWZ (running-width) × Bernstein-{npar-1}"
+  constants:
+    n_terms: 2
+    is_running: true
+  initial_params:
+  - 1.0
+  - 1.0
+  - -0.01
+- dir: FunLib/functions/bwz_bern
+  key: "BWZxBern-{npar-1}-rwForm"
+  label: "BWZ (running-width) × Bernstein-{npar-1}"
+  constants:
+    n_terms: 3
+    is_running: true
+  initial_params:
+  - 1.0
+  - 1.0
+  - 1.0
+  - -0.01
+- dir: FunLib/functions/landau
+  initial_params:
+  - 91.0
+  - 1.5
+- dir: FunLib/functions/landau_bern
+  constants:
+    n_terms: 1
+  initial_params:
+  - 1.0
+  - 0.7376434
+- dir: FunLib/functions/landau_bern
+  constants:
+    n_terms: 2
+  initial_params:
+  - 1.3017058
+  - 1.409814
+  - 0.7376434
+- dir: FunLib/functions/landau_bern
+  constants:
+    n_terms: 3
+  initial_params:
+  - 1.3017058
+  - 1.409814
+  - 1.0
+  - 0.7376434
+- dir: FunLib/functions/landau_bern
+  key: LandauxBern-2-freeMPV
+  label: "Landau (free MPV) \xD7 Bernstein-2"
+  constants:
+    n_terms: 2
+    variant: free_mpv
+  initial_params:
+  - 91.1876
+  - 1.0
+  - 1.0
+  - 1.0
+- dir: FunLib/functions/s_exp
+  constants:
+    n_terms: 1
+  initial_params:
+  - -0.1410494
+- dir: FunLib/functions/s_exp
+  constants:
+    n_terms: 2
+  initial_params:
+  - -0.1410494
+  - 5.7e-06
+  - -0.0318397
+- dir: FunLib/functions/s_exp
+  constants:
+    n_terms: 3
+  initial_params:
+  - -0.1410494
+  - 5.7e-06
+  - -0.0318397
+  - 1.0e-09
+  - -0.05
+- dir: FunLib/functions/s_powerlaw
+  constants: {n_terms: 1}
+  initial_params:
+  - -4.0
+- dir: FunLib/functions/s_powerlaw
+  constants: {n_terms: 2}
+  initial_params:
+  - -16.5712443
+  - 8.6194711
+  - -4.5502197
+- dir: FunLib/functions/s_powerlaw
+  constants: {n_terms: 3}
+  initial_params:
+  - -16.5712443
+  - 8.6194711
+  - -4.5502197
+  - 0.5
+  - -25.0
+- dir: FunLib/functions/spline_bern
+  initial_params:
+  - 1.1003244
+  - 1.1929349
+- dir: FunLib/functions/spline_bern
+  key: "DYTurbo-Bern-{npar}"
+  label: "DYTurbo-Bern-{npar}"
+  constants:
+    variant: dyturbo
+  initial_params:
+  - 1.1538235
+  - 1.2864738
+- dir: FunLib/functions/bwz_redux
+  constants:
+    n_terms: 1
+  initial_params:
+  - -0.01
+  - 2.0
+- dir: FunLib/functions/bwz_redux
+  constants:
+    n_terms: 2
+  initial_params:
+  - -0.01
+  - 0.001
+  - 2.0
+- dir: FunLib/functions/bwz_redux
+  constants:
+    n_terms: 3
+  initial_params:
+  - -0.01
+  - 0.001
+  - -5.0e-05
+  - 2.0
+- dir: FunLib/functions/bwz_gamma
+  initial_params:
+  - -0.2
+  - 0.9
+- dir: FunLib/functions/bwz_gamma
+  key: BWZGamma-rwForm
+  label: "BWZ (running-width form) + γ propagator"
+  constants:
+    is_running: true
+  initial_params:
+  - 0.3
+  - 0.7
+- dir: FunLib/functions/bernstein
+  initial_params:
+  - 0.2
+- dir: FunLib/functions/bernstein
+  initial_params:
+  - 0.25
+  - 0.08
+- dir: FunLib/functions/bernstein
+  initial_params:
+  - 0.1443959
+  - 0.288062
+  - 0.1513877
+- dir: FunLib/functions/bernstein
+  initial_params:
+  - 0.14
+  - 0.29
+  - 0.15
+  - 0.07
+- dir: FunLib/functions/exppoly
+  initial_params:
+  - -0.9634956
+  - 0.2824903
+- dir: FunLib/functions/exppoly
+  initial_params:
+  - -0.8888725
+  - 0.265867
+  - -0.121806
+- dir: FunLib/functions/exppoly
+  initial_params:
+  - -0.8997137
+  - 0.2059373
+  - -0.101526
+  - 0.0636217
+- dir: FunLib/functions/laurent
+  constants:
+    n_terms: 1
+  initial_params:
+  - 5.0
+  - 0.0
+- dir: FunLib/functions/laurent
+  constants:
+    n_terms: 2
+  initial_params:
+  - 5.0
+  - 0.0
+  - 0.0
+- dir: FunLib/functions/laurent
+  constants:
+    n_terms: 3
+  initial_params:
+  - 5.0
+  - 0.0
+  - 0.0
+  - 0.0
+- dir: FunLib/functions/laurent
+  constants:
+    n_terms: 4
+  initial_params:
+  - 5.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+- dir: FunLib/functions/dijet
+  initial_params:
+  - 1.0
+  - 6.3
+  - 0.0
+- dir: FunLib/functions/dijet
+  key: Dijet5
+  label: Dijet / QCD function (5 par)
+  initial_params:
+  - 1.0
+  - 6.3
+  - 0.0
+  - 0.0
+- dir: FunLib/functions/breit_wigner
+  initial_params:
+  - 91.1876
+  - 2.4952
+- dir: FunLib/functions/bwz
+  initial_params: []
+- dir: FunLib/functions/bwz_exp
+  initial_params:
+  - -0.9
+  - 0.2
+- dir: FunLib/functions/voigtz
+  initial_params:
+  - 0.2429833
+  - 0.1276718
+  - -0.041122
+- dir: FunLib/functions/sumbesselk0
+  constants:
+    n_terms: 1
+  initial_params:
+  - 0.1376
+- dir: FunLib/functions/sumbesselk0
+  constants:
+    n_terms: 2
+  initial_params:
+  - 0.1375824
+  - 2.9e-06
+  - 0.0286083
+- dir: FunLib/functions/sumbesselk0
+  constants:
+    n_terms: 3
+  initial_params:
+  - 0.1375824
+  - 2.9e-06
+  - 0.0286083
+  - 1.5e-06
+  - 0.05
+- dir: FunLib/functions/moyal
+  initial_params:
+  - 95.0
+  - 12.0
+- dir: FunLib/functions/gammatail
+  initial_params:
+  - -0.8845538
+  - 0.015497
+  - 100.0
+- dir: FunLib/functions/gev
+  initial_params:
+  - 100.4159891
+  - 7.5653239
+  - 1.2786239
+- dir: FunLib/functions/weibull
+  initial_params:
+  - 0.0010585
+  - 0.2523559
+- dir: FunLib/functions/frechet
+  initial_params:
+  - 10.6419978
+  - 4.6641862
+- dir: FunLib/functions/lognormal
+  initial_params:
+  - 4.85
+  - 1.6151451
+- dir: FunLib/functions/gengamma
+  initial_params:
+  - -5.6866125
+  - 2.1e-06
+  - -0.0387032
+- dir: FunLib/functions/tricomiu
+  initial_params:
+  - 0.0
+  - 736.5931287
+  - 0.0023117
+- dir: FunLib/functions/besselknu
+  initial_params:
+  - 5.0002188
+  - 0.0185552
+- dir: FunLib/functions/airyai
+  initial_params:
+  - 0.03
+  - -1.33
+- dir: FunLib/functions/parabcyl
+  initial_params:
+  - -15.0100647
+  - 0.0121722
+  - -3.9046758
+- dir: FunLib/functions/erfc
+  initial_params:
+  - 90.0
+  - 48.0
+- dir: FunLib/functions/rationalpade
+  constants: {num_deg: 1, den_deg: 1}
+  initial_params:
+  - 0.0
+  - 0.8
+- dir: FunLib/functions/rationalpade
+  constants: {num_deg: 2, den_deg: 1}
+  initial_params:
+  - 0.0
+  - 0.0
+  - 0.8
+- dir: FunLib/functions/rationalpade
+  constants: {num_deg: 2, den_deg: 2}
+  initial_params:
+  - -0.1288324
+  - 0.0212008
+  - 0.8079761
+  - 0.1200489
+- dir: FunLib/functions/rationalpade
+  constants: {num_deg: 3, den_deg: 1}
+  initial_params:
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.8
+- dir: FunLib/functions/rationalpade
+  constants: {num_deg: 3, den_deg: 2}
+  initial_params:
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.8
+  - 0.12
+- dir: FunLib/functions/rationalpade
+  constants: {num_deg: 3, den_deg: 3}
+  initial_params:
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.8
+  - 0.12
+  - 0.0
+- dir: FunLib/functions/exprational
+  constants: {num_deg: 2, den_deg: 1}
+  initial_params:
+  - -1.0
+  - 0.0
+  - 0.0
+- dir: FunLib/functions/exprational
+  constants: {num_deg: 3, den_deg: 1}
+  initial_params:
+  - -1.0
+  - 0.0
+  - 0.0
+  - 0.0
+- dir: FunLib/functions/exprational
+  constants: {num_deg: 2, den_deg: 2}
+  initial_params:
+  - -1.0
+  - 0.0
+  - 0.0
+  - 0.0
+- dir: FunLib/functions/exprational
+  constants: {num_deg: 3, den_deg: 2}
+  initial_params:
+  - -1.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+- dir: FunLib/functions/chebyshev
+  initial_params:
+  - -0.9278804
+  - 0.3526251
+- dir: FunLib/functions/chebyshev
+  initial_params:
+  - -0.9278804
+  - 0.3526251
+  - -0.1203914
+- dir: FunLib/functions/chebyshev
+  initial_params:
+  - -0.9278804
+  - 0.3526251
+  - -0.1203914
+  - 0.0346919
+- dir: FunLib/functions/pearsonvii
+  initial_params:
+  - 91.2872067
+  - 1.337835
+  - 0.8779879
+- dir: FunLib/functions/burr
+  initial_params:
+  - 43.6980457
+  - 17.6366406
+  - 0.2644569
+- dir: FunLib/functions/genpareto
+  initial_params:
+  - 103.4767014
+  - 15.9794497
+  - 1.3167824
+- dir: FunLib/functions/nig
+  initial_params:
+  - 0.3982179
+  - 3.6730829
+  - 93.4052554
+  - 0.2211055
+- dir: FunLib/functions/variancegamma
+  initial_params:
+  - -0.2125358
+  - 7.77e-05
+  - -0.0055681
+  - 94.1116469
+- dir: FunLib/functions/emg
+  initial_params:
+  - 5.667
+  - 90.31
+  - 3.49
+- dir: FunLib/functions/ua2
+  initial_params:
+  - -28.9906287
+  - 43.7517836
+  - -6.772749
+- dir: FunLib/functions/hagedorn
+  initial_params:
+  - 0.9730799
+  - 5.7069782
+- dir: FunLib/functions/crystalball
+  constants:
+    variant: right_sided
+  initial_params:
+  - 101.7388315
+  - -6.1366157
+  - 0.721853
+  - 1.7594287
+- dir: FunLib/functions/crystalball
+  key: CrystalBall-left
+  label: "Crystal Ball — left-side power-law tail (standard)"
+  constants:
+    variant: left_sided
+  initial_params:
+  - 155.0
+  - 10.0
+  - 1.5
+  - 2.0
+- dir: FunLib/functions/crystalball
+  key: CrystalBall-double
+  label: "Crystal Ball — double-sided power-law tails (DSCB)"
+  constants:
+    variant: double_sided
+  npar: 6
+  param_names:
+  - mean
+  - sigma
+  - alpha_l
+  - n_l
+  - alpha_r
+  - n_r
+  initial_params:
+  - 130.0
+  - 15.0
+  - 1.0
+  - 2.0
+  - 1.0
+  - 2.0
+- dir: FunLib/functions/johnsonsu
+  initial_params:
+  - -2.8981264
+  - 0.5284331
+  - 99.6452282
+  - 0.1129197
+- dir: FunLib/functions/inversegauss
+  initial_params:
+  - 8.7948359
+  - 93.9727823
+  - 1.1153513
+- dir: FunLib/functions/invgamma
+  initial_params:
+  - 0.7594436
+  - 91.2184386
+  - 0.0938408
+- dir: FunLib/functions/betaprime
+  initial_params:
+  - 0.0133448
+  - -1.053658
+  - 96.6814416
+  - -34.4616324
+- dir: FunLib/functions/gompertz
+  initial_params:
+  - 292686.0
+  - -180.614
+  - 7604890.0
+- dir: FunLib/functions/loggamma
+  initial_params:
+  - 5826.56
+  - -91424.5
+  - 10481.1
+- dir: FunLib/functions/levy
+  initial_params:
+  - 101.8071877
+  - 12.9139534
+- dir: FunLib/functions/exponweibull
+  initial_params:
+  - 0.0707685
+  - 0.3437739
+  - 95.651181
+  - 2.5465399
+- dir: FunLib/functions/skewnormal
+  initial_params:
+  - 91.2543
+  - -244.591
+  - 100.899
+- dir: FunLib/functions/whittakerw
+  initial_params:
+  - -27.4906454
+  - 6.1605287
+  - 1.62e-05
+- dir: FunLib/functions/kummerm
+  initial_params:
+  - 4.0890136
+  - 2.0947313
+  - 0.1859714
+- dir: FunLib/functions/gausshyper
+  initial_params:
+  - 36.1001
+  - 3.73475
+  - 1.73574
+- dir: FunLib/functions/incgamma
+  initial_params:
+  - 0.000216699
+  - 0.0323314
+- dir: FunLib/functions/incgamma
+  key: IncGammaLower
+  label: Lower incomplete gamma P(s,bx)
+  constants:
+    variant: lower
+  initial_params:
+  - 5.0
+  - 0.04
+- dir: FunLib/functions/sersic
+  initial_params:
+  - 106.0287931
+  - 123045.3976883
+  - 7.1611023
+- dir: FunLib/functions/gnfw
+  initial_params:
+  - 26.3361115
+  - 94.4226876
+  - -11.4482531
+- dir: FunLib/functions/moffat
+  initial_params:
+  - 2.2816854
+  - 2.8329387
+- dir: FunLib/functions/fermidirac
+  initial_params:
+  - -211.442
+  - 25.978
+- dir: FunLib/functions/planck
+  initial_params:
+  - -4.6637259
+  - 151017.1803369
+- dir: FunLib/functions/butterworth
+  initial_params:
+  - 28.7163798
+  - 5.6641351
+- dir: FunLib/functions/hill
+  initial_params:
+  - 12.6040332
+  - 5.6641386
+- dir: FunLib/functions/genlogistic
+  initial_params:
+  - 2.52486
+  - 6.343
+  - 0.244171
+- dir: FunLib/functions/gennormal
+  initial_params:
+  - 0.2042482
+  - 97.3481164
+  - 0.0011458
+- dir: FunLib/functions/fatiguelife
+  initial_params:
+  - 1.2804673
+  - 103.5878224
+  - 15.8516519
+- dir: FunLib/functions/pearsoniv
+  initial_params:
+  - 91.4636948
+  - 0.3662452
+  - 0.8795292
+  - -1.2790236
+- dir: FunLib/functions/doniachsunjic
+  initial_params:
+  - 91.1653689
+  - 0.1867888
+  - 0.2406174
+- dir: FunLib/functions/fano
+  initial_params:
+  - 86.9541155
+  - 0.4906576
+  - -195342.2708325
+- dir: FunLib/functions/mittagleffler
+  initial_params:
+  - 0.998676
+  - 18.74375
+- dir: FunLib/functions/hyperbolic
+  initial_params:
+  - 0.0462467
+  - -6.1118e-07
+  - 0.00775202
+  - 90.6412

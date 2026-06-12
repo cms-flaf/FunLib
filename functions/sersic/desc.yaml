@@ -1,0 +1,26 @@
+key: Sersic
+label: Sérsic profile (astronomy)
+description: |
+  The **Sérsic profile** (**J.L. Sérsic**, 1963) was introduced to generalise the de Vaucouleurs r^{1/4} law for elliptical galaxies.
+  The **Sérsic index n** continuously interpolates between:
+
+  - **n = 0.5**: Gaussian
+  - **n = 1**: exponential disk
+  - **n = 4**: de Vaucouleurs bulge
+  - **n → ∞**: pure power law
+
+  Now the standard parametrization for **galaxy surface-brightness profiles** in optical astronomy (HST, JWST).
+latex: f(x)=\exp\!\left[-b\,(x/r_{e})^{1/n}\right]
+reference: https://en.wikipedia.org/wiki/Sersic_profile
+param_names:
+- b
+- re
+- n
+constants:
+  exp_max: 700.0
+  param_min: 1.0e-9
+  n_min: 1.0e-3
+latex_var_map:
+  r_e: re
+minimization:
+  max_function_calls: 500

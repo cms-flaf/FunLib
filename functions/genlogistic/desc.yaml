@@ -1,0 +1,19 @@
+key: GenLogistic
+label: Generalized logistic / Richards (growth)
+description: |
+  The **generalized logistic (Richards growth) function** (**F.J. Richards**, 1959) extends the symmetric logistic S-curve with a shape parameter ν that controls the asymmetry of the inflection point.
+  It encompasses the **Gompertz** (ν → 0), **logistic** (ν = 1), and **von Bertalanffy** (ν = 2/3) growth models as special cases.
+
+  Applications: ecology (forest growth, pest population dynamics), epidemiology (pandemic growth curves), tumour biology.
+  As a falling background it provides a smooth **transition from a plateau to a power-law-like decay**.
+latex: f(x)=\dfrac{1}{(1+e^{(x-\mu)/s})^{a}}
+reference: https://en.wikipedia.org/wiki/Generalised_logistic_function
+param_names:
+- mu
+- s
+- a
+constants:
+  exp_max: 700.0
+  param_min: 1.0e-9
+minimization:
+  max_function_calls: 500

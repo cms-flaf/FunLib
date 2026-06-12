@@ -1,0 +1,25 @@
+key: PearsonIV
+label: Pearson type IV (asymmetric spectroscopy)
+description: |
+  **Pearson type IV** (**Karl Pearson**, 1895) is the asymmetric, unimodal, infinite-support distribution from Pearson's moment-based classification:
+  `f(x) ∝ (1 + (x/a)²)^{−m} · exp(−ν · arctan(x/a))`
+
+  Four moments can independently take any values in the physically reachable (skewness², kurtosis) plane.
+
+  Applications:
+
+  - **X-ray photoelectron spectroscopy (XPS)**: asymmetric core-level line shapes
+  - **NMR spectroscopy**
+  - **Financial risk modelling**
+latex: f(x)=(1+z^{2})^{-m}e^{-\nu\arctan z},\ z=(x-\lambda)/a
+reference: https://en.wikipedia.org/wiki/Pearson_distribution
+param_names:
+- lam
+- a
+- m
+- nu
+constants:
+  exp_max: 700.0
+  param_min: 1.0e-9
+minimization:
+  max_function_calls: 3000

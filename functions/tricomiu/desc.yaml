@@ -1,0 +1,23 @@
+key: TricomiU
+label: Confluent hypergeometric U (Kummer)
+description: |
+  The **Tricomi confluent hypergeometric function U(a, b, z)** (**Francesco Tricomi**, 1947) is the solution to Kummer's equation that is **regular at infinity** — unlike Kummer M (₁F₁) which grows exponentially.
+
+  Applications:
+
+  - **Hydrogen atom** wave functions for the continuum spectrum
+  - **Quantum harmonic oscillator** (parabolic cylinder D-functions are special cases)
+  - **Coulomb Green's function** in nuclear and atomic scattering
+
+  Its **power-law-times-exponential** asymptotic behaviour makes it a flexible parametrization for tails that interpolate between pure power laws and pure exponentials.
+latex: 'f(x)=U(a,b,c\,x), \quad U(a,b,z)=\dfrac{1}{\Gamma(a)}\int_0^{\infty}e^{-zt}\,t^{a-1}(1+t)^{b-a-1}\,\mathrm{d}t'
+reference: https://en.wikipedia.org/wiki/Confluent_hypergeometric_function
+param_names:
+- a
+- b
+- c
+constants:
+  a_lo: -2.0    # conf_hypergU hangs for a outside [a_lo, a_hi] — clamp
+  a_hi: 10.0
+  b_lo: -10.0   # conf_hypergU hangs for b outside [b_lo, b_hi] — clamp
+  b_hi: 10.0

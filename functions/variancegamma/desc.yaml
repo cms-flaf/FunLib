@@ -1,0 +1,23 @@
+key: VarianceGamma
+label: Variance-Gamma (gen. Laplace)
+description: |
+  The **Variance-Gamma (VG) distribution** (**Madan, Carr & Chang**, 1998) is obtained by evaluating a Brownian motion with drift at a random time governed by a **Gamma process** (Lévy subordination).
+  The density is built on the modified Bessel function **Kλ**.
+
+  Applications:
+
+  - **Equity option pricing**: provides exact skewness and excess kurtosis with a known moment-generating function
+  - **Turbulence modelling** (Barndorff-Nielsen)
+
+  The VG process is widely used in quantitative finance as a **Lévy process** with semi-heavy tails.
+latex: f(x)=|x-\mu|^{\lambda-1/2}K_{\lambda-1/2}\!\left(\alpha|x-\mu|\right)e^{\beta(x-\mu)}
+reference: https://en.wikipedia.org/wiki/Variance-gamma_distribution
+param_names:
+- lam
+- alpha
+- beta
+- mu
+constants:
+  exp_max: 700.0     # upper clamp for beta*(x-mu) before exp()
+  alpha_min: 1.0e-9  # lower bound for |alpha| — prevents kv(nu,0) singularity
+  z_min: 1.0e-9      # lower bound for |x-mu| — prevents kv(nu,0) and 0^(lam-0.5)

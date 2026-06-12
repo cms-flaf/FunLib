@@ -1,0 +1,21 @@
+key: InverseGauss
+label: Inverse Gaussian (Wald)
+description: |
+  The **Inverse-Gaussian (Wald) distribution** (**M.A. Wald**, 1947) is the distribution of the **first passage time** of a Brownian motion with positive drift to a fixed level.
+
+  Applications:
+
+  - **Reliability**: additive fatigue crack growth lifetime modelling
+  - **Queueing theory**: waiting time distributions
+  - **Neuroscience**: neuronal firing rates in computational models
+  - **Economics**: income distribution modelling
+latex: f(x)=\dfrac{1}{\mathrm{scale}}\sqrt{\dfrac{1}{2\pi z^{3}}}\exp\!\left(-\dfrac{(z-|\mu|)^{2}}{2\mu^{2}z}\right),\ z=\dfrac{x-\mathrm{loc}}{\mathrm{scale}}
+reference: https://en.wikipedia.org/wiki/Inverse_Gaussian_distribution
+param_names:
+- mu
+- loc
+- scale
+constants:
+  param_min: 1.0e-9
+minimization:
+  max_function_calls: 10000

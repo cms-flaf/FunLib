@@ -1,0 +1,23 @@
+key: "Spline-Bern-{npar}"
+label: "Spline-Bern-{npar}"
+description: |
+  Tabulated theory kernel × Bernstein-n polynomial (variable degree).
+
+  Two variants via ``constants.variant``:
+    fewz    (default) — FEWZ NLO dσ/dm spline (fewz_smooth.csv, 0.1 GeV steps).
+                        CMS Run 2 H→μμ primary baseline (CMS-HIG-19-006).
+    dyturbo           — DYTurbo N³LO dσ/dm spline (dyturbo_smooth.csv, 0.01 GeV steps).
+                        Higher-order alternative (Camarda et al. 2020).
+
+  The Bernstein-n polynomial absorbs residual EWK/PDF shape differences between
+  the theory prediction and data.  npar = Bernstein degree n.
+latex: f(x)=\mathrm{CubicSpline}(x)\bigl[(1-t)^{n}+\sum_{k=1}^{n}\binom{n}{k}c_{k}\,t^{k}(1-t)^{n-k}\bigr],\ t=\dfrac{x-x_{\min}}{x_{\max}-x_{\min}}
+reference: "CMS-HIG-19-006; FEWZ NLO dσ/dm spline from fewz_smooth.csv; DYTurbo N³LO spline from dyturbo_smooth.csv (Camarda et al. 2020)"
+# npar and param_names are intentionally absent: variable-npar kernel.
+# validate_kernel_csv: the validator builds a SymPy interpolating_spline (independent
+# of scipy CubicSpline) and maps it to CubicSpline() in the full latex formula.
+# Tests f = CubicSpline(x) * Bernstein(x,p) vs Python end-to-end.
+constants:
+  variant: fewz
+validate_kernel_csv: fewz_smooth.csv
+minimization: {}
