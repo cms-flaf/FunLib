@@ -1,0 +1,517 @@
+minimization:
+  minimizer: Minuit2
+  algorithm: Migrad
+  tolerance: 0.001
+  max_function_calls: 3000
+  max_iterations: 1000
+  strategy: 1
+  print_level: 0
+  error_def: 1.0
+fit_range:
+  min: 110.0
+  max: 150.0
+  exclude:
+  - - 120.0
+    - 130.0
+reference_integral: 1000000.0
+functions:
+- dir: FunLib/functions/bwz_bern
+  constants:
+    n_terms: 1
+  initial_params:
+  - 1.0
+  - -0.01
+  param_bounds:
+    c1:
+      min: 0.366052
+      max: 3.825534
+      methods:
+      - combine
+    a:
+      min: -0.501248
+      max: 0.506399
+      methods:
+      - combine
+- dir: FunLib/functions/bwz_bern
+  key: BWZxBern-{npar-1}-rwForm
+  label: BWZ (running-width) × Bernstein-{npar-1}
+  constants:
+    n_terms: 1
+    is_running: true
+  initial_params:
+  - 1.0
+  - -0.01
+  param_bounds:
+    c1:
+      min: 0.304776
+      max: 3.239312
+      methods:
+      - combine
+    a:
+      min: -0.512253
+      max: -0.00107
+      methods:
+      - combine
+- dir: FunLib/functions/bwz_bern
+  key: BWZxBern-{npar-1}-nrForm
+  label: BWZ (non-rel.) × Bernstein-{npar-1}
+  constants:
+    is_lorentzian: true
+    is_running: false
+    n_terms: 1
+  initial_params:
+  - 1.0
+  - -0.01
+  param_bounds:
+    c1:
+      min: 0.346062
+      max: 3.631317
+      methods:
+      - combine
+    a:
+      min: -0.508963
+      max: -0.0003
+      methods:
+      - combine
+- dir: FunLib/functions/bwz_bern
+  key: BWZxBern-{npar-1}-nrRwForm
+  label: BWZ (non-rel. running) × Bernstein-{npar-1}
+  constants:
+    is_lorentzian: true
+    is_running: true
+    n_terms: 1
+  initial_params:
+  - 1.0
+  - -0.01
+  param_bounds:
+    c1:
+      min: 0.14295
+      max: 3.006677
+      methods:
+      - combine
+    a:
+      min: -0.519173
+      max: -0.00046
+      methods:
+      - combine
+- dir: FunLib/functions/landau
+  initial_params:
+  - 86.882422
+  - 0.0196126
+  param_bounds:
+    mpv:
+      min: 16.068057
+      max: 175.081665
+      methods:
+      - combine
+    sigma:
+      min: -0.5
+      max: 0.5
+      methods:
+      - combine
+- dir: FunLib/functions/landau_bern
+  constants:
+    n_terms: 1
+  initial_params:
+  - 1.0
+  - 0.7376434
+  param_bounds:
+    c1:
+      min: 0.245741
+      max: 3.292161
+      methods:
+      - combine
+    sigma:
+      min: -0.5
+      max: 1.134004
+      methods:
+      - combine
+- dir: FunLib/functions/spline_bern
+  initial_params:
+  - 1.1003244
+  - 1.1929349
+  param_bounds:
+    c1:
+      min: 0.212601
+      max: 2.384105
+      methods:
+      - combine
+    c2:
+      min: 0.222361
+      max: 2.82245
+      methods:
+      - combine
+- dir: FunLib/functions/spline_bern
+  key: DYTurbo-Bern-{npar}
+  label: DYTurbo-Bern-{npar}
+  constants:
+    variant: dyturbo
+  initial_params:
+  - 1.1538235
+  - 1.2864738
+  param_bounds:
+    c1:
+      min: 0.223232
+      max: 2.4918
+      methods:
+      - combine
+    c2:
+      min: 0.239766
+      max: 3.044448
+      methods:
+      - combine
+- dir: FunLib/functions/bwz_redux
+  constants:
+    n_terms: 1
+  initial_params:
+  - -0.01
+  - 2.0
+  param_bounds:
+    c1:
+      min: 0.001054
+      max: 0.512346
+      methods:
+      - combine
+    p:
+      min: 0.332282
+      max: 3.467503
+      methods:
+      - combine
+- dir: FunLib/functions/bwz_redux
+  key: BWZRedux-{npar-1}-rwForm
+  label: BWZ-Redux (running, poly deg {npar-1})
+  constants:
+    is_lorentzian: false
+    is_running: true
+    n_terms: 1
+  initial_params:
+  - -0.01
+  - 2.0
+  param_bounds:
+    c1:
+      min: -0.505832
+      max: 0.501325
+      methods:
+      - combine
+    p:
+      min: 0.359846
+      max: 3.73958
+      methods:
+      - combine
+- dir: FunLib/functions/bwz_redux
+  key: BWZRedux-{npar-1}-nrForm
+  label: BWZ-Redux (non-rel., poly deg {npar-1})
+  constants:
+    is_lorentzian: true
+    is_running: false
+    n_terms: 1
+  initial_params:
+  - -0.01
+  - 2.0
+  param_bounds:
+    c1:
+      min: -0.501451
+      max: 0.50595
+      methods:
+      - combine
+    p:
+      min: 0.34057
+      max: 3.551997
+      methods:
+      - combine
+- dir: FunLib/functions/bwz_redux
+  key: BWZRedux-{npar-1}-nrRwForm
+  label: BWZ-Redux (non-rel. running, poly deg {npar-1})
+  constants:
+    is_lorentzian: true
+    is_running: true
+    n_terms: 1
+  initial_params:
+  - -0.01
+  - 2.0
+  param_bounds:
+    c1:
+      min: -0.513078
+      max: -0.00112
+      methods:
+      - combine
+    p:
+      min: 0.368824
+      max: 3.830733
+      methods:
+      - combine
+- dir: FunLib/functions/bwz_gamma
+  initial_params:
+  - -0.248
+  - 0.376
+  param_bounds:
+    a:
+      min: -0.783005
+      max: -0.024667
+      methods:
+      - combine
+    fZ:
+      min: 0.069256
+      max: 1.051515
+      methods:
+      - combine
+- dir: FunLib/functions/bwz_gamma
+  key: BWZGamma-rwForm
+  label: BWZ (running-width form) + γ propagator
+  constants:
+    is_running: true
+  initial_params:
+  - -0.025
+  - 2.0
+  param_bounds:
+    a:
+      min: -0.529985
+      max: 0.662587
+      methods:
+      - combine
+    fZ:
+      min: 0.1998
+      max: 5.110806
+      methods:
+      - combine
+- dir: FunLib/functions/bwz_gamma
+  key: BWZGamma-nrForm
+  label: BWZ (non-rel.) + γ propagator
+  constants:
+    is_lorentzian: true
+    is_running: false
+  initial_params:
+  - -0.248
+  - 0.376
+  param_bounds:
+    a:
+      min: -0.734181
+      max: -0.016988
+      methods:
+      - combine
+    fZ:
+      min: 0.09799
+      max: 1.276368
+      methods:
+      - combine
+- dir: FunLib/functions/bwz_gamma
+  key: BWZGamma-nrRwForm
+  label: BWZ (non-rel. running) + γ propagator
+  constants:
+    is_lorentzian: true
+    is_running: true
+  initial_params:
+  - -0.248
+  - 0.376
+  param_bounds:
+    a:
+      min: -0.761457
+      max: -0.021604
+      methods:
+      - combine
+    fZ:
+      min: 0.161479
+      max: 1.945649
+      methods:
+      - combine
+- dir: FunLib/functions/exppoly
+  initial_params:
+  - -0.9634956
+  - 0.2824903
+  param_bounds:
+    c1:
+      min: -1.965338
+      max: -0.162106
+      methods:
+      - combine
+    c2:
+      min: 0.052665
+      max: 0.785004
+      methods:
+      - combine
+- dir: FunLib/functions/breit_wigner
+  key: BreitWigner-rwForm
+  label: Breit-Wigner (running)
+  constants:
+    is_lorentzian: false
+    is_running: true
+  initial_params:
+  - 91.1876
+  - 2.4952
+  param_bounds:
+    m:
+      min: 17.164732
+      max: 186.42629
+      methods:
+      - combine
+    Gamma:
+      min: -9.850439
+      max: 26.646391
+      methods:
+      - combine
+- dir: FunLib/functions/breit_wigner
+  key: BreitWigner-nrForm
+  label: Breit-Wigner (non-rel.)
+  constants:
+    is_lorentzian: true
+    is_running: false
+  initial_params:
+  - 91.1876
+  - 2.4952
+  param_bounds:
+    m:
+      min: 16.067999
+      max: 175.081675
+      methods:
+      - combine
+    Gamma:
+      min: -0.500064
+      max: 0.500815
+      methods:
+      - combine
+- dir: FunLib/functions/breit_wigner
+  key: BreitWigner-nrRwForm
+  label: Breit-Wigner (non-rel. running)
+  constants:
+    is_lorentzian: true
+    is_running: true
+  initial_params:
+  - 91.1876
+  - 2.4952
+  param_bounds:
+    m:
+      min: 18.805686
+      max: 201.830341
+      methods:
+      - combine
+    Gamma:
+      min: -40.458986
+      max: 40.458942
+      methods:
+      - combine
+- dir: FunLib/functions/bwz_exp
+  initial_params:
+  - 0.5
+  - 0.0
+  param_bounds:
+    a:
+      min: 0.054746
+      max: 0.964292
+      methods:
+      - combine
+    b:
+      min: -0.560173
+      max: -0.009366
+      methods:
+      - combine
+- dir: FunLib/functions/bwz_exp
+  key: BWZxExp-rwForm
+  label: BWZ (running) × exp(quad)
+  constants:
+    is_lorentzian: false
+    is_running: true
+  initial_params:
+  - 0.5
+  - 0.0
+  param_bounds:
+    a:
+      min: -0.535464
+      max: 0.655062
+      methods:
+      - combine
+    b:
+      min: -0.536018
+      max: -0.004501
+      methods:
+      - combine
+- dir: FunLib/functions/bwz_exp
+  key: BWZxExp-nrForm
+  label: BWZ (non-rel.) × exp(quad)
+  constants:
+    is_lorentzian: true
+    is_running: false
+  initial_params:
+  - 0.5
+  - 0.0
+  param_bounds:
+    a:
+      min: 0.018465
+      max: 0.782878
+      methods:
+      - combine
+    b:
+      min: -0.551762
+      max: -0.007676
+      methods:
+      - combine
+- dir: FunLib/functions/bwz_exp
+  key: BWZxExp-nrRwForm
+  label: BWZ (non-rel. running) × exp(quad)
+  constants:
+    is_lorentzian: true
+    is_running: true
+  initial_params:
+  - 0.5
+  - 0.0
+  param_bounds:
+    a:
+      min: -0.716866
+      max: -0.00527
+      methods:
+      - combine
+    b:
+      min: -0.527603
+      max: -0.00281
+      methods:
+      - combine
+- dir: FunLib/functions/rationalpade
+  constants:
+    num_deg: 1
+    den_deg: 1
+  initial_params:
+  - 0.0
+  - 0.8
+  param_bounds:
+    a1:
+      min: -0.5
+      max: 0.1
+      methods:
+      - combine
+    b1:
+      min: 0.1
+      max: 0.9
+      methods:
+      - combine
+- dir: FunLib/functions/exprational
+  constants:
+    num_deg: 1
+    den_deg: 1
+  initial_params:
+  - -1.0
+  - 0.0
+  param_bounds:
+    a1:
+      min: -1.0
+      max: -0.1
+      methods:
+      - combine
+    b1:
+      min: 0.1
+      max: 0.6
+      methods:
+      - combine
+- dir: FunLib/functions/levy
+  initial_params:
+  - 101.862982
+  - 13.0863061
+  param_bounds:
+    loc:
+      min: 18.222888
+      max: 204.622684
+      methods:
+      - combine
+    scale:
+      min: 0.000186
+      max: 26.331586
+      methods:
+      - combine

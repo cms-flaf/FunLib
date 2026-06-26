@@ -12,10 +12,14 @@ description: |
 
   BW_norm(x) = BW(x) / BW(x_mid) is normalised to 1 at the range midpoint.
 latex:
-- when: {is_running: false}
+- when: {is_lorentzian: false, is_running: false}
   formula: 'f(x)=e^{a\,x^{\prime}}\!\left[f_Z\dfrac{(x_{mid}^{2}-M_{Z}^{2})^{2}+(M_{Z}\,G_{Z})^{2}}{(x^{2}-M_{Z}^{2})^{2}+(M_{Z}\,G_{Z})^{2}}+(1-f_Z)\dfrac{x_{mid}^{2}}{x^{2}}\right],\ \ x^{\prime}=\dfrac{x-x_{mid}}{x_{half}}'
-- when: {is_running: true}
+- when: {is_lorentzian: false, is_running: true}
   formula: 'f(x)=e^{a\,x^{\prime}}\!\left[f_Z\dfrac{x^{2}}{x_{mid}^{2}}\cdot\dfrac{(x_{mid}^{2}-M_{Z}^{2})^{2}+(M_{Z}\,G_{Z})^{2}}{(x^{2}-M_{Z}^{2})^{2}+(M_{Z}\,G_{Z})^{2}}+(1-f_Z)\dfrac{x_{mid}^{2}}{x^{2}}\right],\ \ x^{\prime}=\dfrac{x-x_{mid}}{x_{half}}'
+- when: {is_lorentzian: true, is_running: false}
+  formula: 'f(x)=e^{a\,x^{\prime}}\!\left[f_Z\dfrac{(x_{mid}-M_{Z})^{2}+(G_{Z}/2)^{2}}{(x-M_{Z})^{2}+(G_{Z}/2)^{2}}+(1-f_Z)\dfrac{x_{mid}^{2}}{x^{2}}\right],\ \ x^{\prime}=\dfrac{x-x_{mid}}{x_{half}}'
+- when: {is_lorentzian: true, is_running: true}
+  formula: 'f(x)=e^{a\,x^{\prime}}\!\left[f_Z\dfrac{x^{2}}{x_{mid}^{2}}\cdot\dfrac{(x_{mid}-M_{Z})^{2}+(G_{Z}/2)^{2}}{(x-M_{Z})^{2}+(G_{Z}/2)^{2}}+(1-f_Z)\dfrac{x_{mid}^{2}}{x^{2}}\right],\ \ x^{\prime}=\dfrac{x-x_{mid}}{x_{half}}'
 latex_var_map:
   MZ: "m"
   GZ: "Gamma"

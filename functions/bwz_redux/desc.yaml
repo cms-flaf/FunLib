@@ -8,7 +8,15 @@ description: |
   At n=2, p=2 this reduces to the standard BWZxBern Z kernel (without the
   Bernstein polynomial).  For p≠2 the lineshape wings are narrower (p>2) or
   broader (p<2) relative to the fixed-width relativistic form.
-latex: 'f(x)=\dfrac{\exp\!\left(\sum_{i=1}^{n}c_{i}\,x^{i}\right)}{(x^{2}-M_{Z}^{2})^{p}+(M_{Z}\,G_{Z})^{p}}'
+latex:
+- when: {is_lorentzian: false, is_running: false}
+  formula: 'f(x)=\dfrac{\exp\!\left(\sum_{i=1}^{n}c_{i}\,x^{i}\right)}{(x^{2}-M_{Z}^{2})^{p}+(M_{Z}\,G_{Z})^{p}}'
+- when: {is_lorentzian: false, is_running: true}
+  formula: 'f(x)=\dfrac{x^{2}\exp\!\left(\sum_{i=1}^{n}c_{i}\,x^{i}\right)}{(x^{2}-M_{Z}^{2})^{p}+(M_{Z}\,G_{Z})^{p}}'
+- when: {is_lorentzian: true, is_running: false}
+  formula: 'f(x)=\dfrac{\exp\!\left(\sum_{i=1}^{n}c_{i}\,x^{i}\right)}{(x-M_{Z})^{p}+(G_{Z}/2)^{p}}'
+- when: {is_lorentzian: true, is_running: true}
+  formula: 'f(x)=\dfrac{x^{2}\exp\!\left(\sum_{i=1}^{n}c_{i}\,x^{i}\right)}{(x-M_{Z})^{p}+(G_{Z}/2)^{p}}'
 reference: https://arxiv.org/abs/2009.04363
 latex_var_map:
   MZ: "m"

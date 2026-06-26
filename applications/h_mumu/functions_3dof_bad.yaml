@@ -1,0 +1,206 @@
+minimization:
+  minimizer: Minuit2
+  algorithm: Migrad
+  tolerance: 0.001
+  max_function_calls: 3000
+  max_iterations: 1000
+  strategy: 1
+  print_level: 0
+  error_def: 1.0
+fit_range:
+  min: 110.0
+  max: 150.0
+  exclude:
+  - - 120.0
+    - 130.0
+reference_integral: 1000000.0
+functions:
+- dir: FunLib/functions/gengamma
+  initial_params:
+  - -5.6866125
+  - 2.1e-06
+  - -0.0387032
+  param_bounds:
+    p:
+      min: -13.392112
+      max: -1.106456
+      methods:
+      - combine
+    a:
+      min: -0.5
+      max: 0.500162
+      methods:
+      - combine
+    d:
+      min: -4.113311
+      max: 1.371117
+      methods:
+      - combine
+- dir: FunLib/functions/burr
+  initial_params:
+  - 43.6980457
+  - 17.6366406
+  - 0.2644569
+  param_bounds:
+    s:
+      min: 5.867821
+      max: 84.436768
+      methods:
+      - combine
+    c:
+      min: 3.477034
+      max: 48.708105
+      methods:
+      - combine
+    k:
+      min: 0.040007
+      max: 0.795037
+      methods:
+      - combine
+- dir: FunLib/functions/emg
+  initial_params:
+  - 5.667
+  - 90.31
+  - 3.49
+  param_bounds:
+    K:
+      min: 1.100431
+      max: 11.908993
+      methods:
+      - combine
+    loc:
+      min: 15.068499
+      max: 176.905205
+      methods:
+      - combine
+    scale:
+      min: 0.643124
+      max: 7.15774
+      methods:
+      - combine
+- dir: FunLib/functions/gompertz
+  initial_params:
+  - 292686.0
+  - -180.614
+  - 7604890.0
+  param_bounds:
+    c:
+      min: 42698.89235
+      max: 297616865.533777
+      methods:
+      - combine
+    loc:
+      min: -305.855039
+      max: 191.171493
+      methods:
+      - combine
+    scale:
+      min: 983463.794739
+      max: 5928774852.196756
+      methods:
+      - combine
+- dir: FunLib/functions/loggamma
+  initial_params:
+  - 5826.56
+  - -91424.5
+  - 10481.1
+  param_bounds:
+    c:
+      min: 425.74807
+      max: 23354.620781
+      methods:
+      - combine
+    loc:
+      min: -247833.239887
+      max: -9454.49508
+      methods:
+      - combine
+    scale:
+      min: 1205.753989
+      max: 27207.558438
+      methods:
+      - combine
+- dir: FunLib/functions/skewnormal
+  initial_params:
+  - 91.2543
+  - -244.591
+  - 100.899
+  param_bounds:
+    a:
+      min: 18.25086
+      max: 3047518297146.9414
+      methods:
+      - combine
+    loc:
+      min: -4439.722037
+      max: -54.245392
+      methods:
+      - combine
+    scale:
+      min: 19.195936
+      max: 419.599097
+      methods:
+      - combine
+- dir: FunLib/functions/whittakerw
+  initial_params:
+  - -5.0
+  - 2.0
+  - 0.05
+  param_bounds:
+    kappa:
+      min: -2080.831845
+      max: 6149.290193
+      methods:
+      - combine
+    mu:
+      min: 1.295836
+      max: 14.188947
+      methods:
+      - combine
+    a:
+      min: 3.0e-06
+      max: 0.504451
+      methods:
+      - combine
+- dir: FunLib/functions/sersic
+  initial_params:
+  - 106.0287931
+  - 123045.3976883
+  - 7.1611023
+  param_bounds:
+    b:
+      min: 12.51144
+      max: 288.051989
+      methods:
+      - combine
+    re:
+      min: 270.409937
+      max: 4123199.745823
+      methods:
+      - combine
+    n:
+      min: 1.270902
+      max: 20.753166
+      methods:
+      - combine
+- dir: FunLib/functions/genlogistic
+  initial_params:
+  - 2.52486
+  - 6.343
+  - 0.244171
+  param_bounds:
+    mu:
+      min: -271.167492
+      max: 101.327591
+      methods:
+      - combine
+    s:
+      min: 0.682643
+      max: 13.067741
+      methods:
+      - combine
+    a:
+      min: 0.036483
+      max: 0.968824
+      methods:
+      - combine

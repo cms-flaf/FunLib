@@ -22,6 +22,24 @@ FUNCTIONS_DIR = os.path.normpath(os.path.join(_HERE, "..", "functions"))
 RTOL = 5e-4  # relative tolerance (allows for ROOT vs scipy precision differences)
 ATOL = 1e-7  # absolute tolerance (for near-zero values)
 
+# Cross-implementation check: compare the Python kernel, the standalone C++
+# kernel and the C++ RooAbsPdf (RooFunLibPdf).  Toggled by --cpp / --no-cpp.
+CHECK_CPP = True
+CPP_RTOL = 2e-3  # looser: C++ closed forms vs scipy/ROOT have ~1e-3 spread
+CPP_ATOL = 1e-7
+
+
+def _screen(v):
+    """Map nan/inf/negative to 0.0 -- the shared shape-kernel contract enforced
+    by both the factory and RooFunLibPdf."""
+    try:
+        if not math.isfinite(v) or v < 0.0:
+            return 0.0
+    except (TypeError, ValueError):
+        return 0.0
+    return v
+
+
 # Add FunLib's parent directory to sys.path so 'import FunLib' works when run standalone.
 # _HERE = FunLib/validation/  ->  '../..' = parent of FunLib
 _FUNLIB_PARENT = os.path.normpath(os.path.join(_HERE, "..", ".."))
@@ -490,7 +508,58 @@ def validate_one(entry):
 
         params_list = [params_dict[k] for k in tc_pnames]
         total_points += len(test_points)
+
+        # Characteristic amplitude of this test case (max |expected|).  The C++
+        # cross-check compares the three implementations to this scale rather
+        # than per-point: oscillatory special functions (ParabCyl, etc.) cross
+        # zero, where a per-point relative tolerance is meaningless but the
+        # absolute disagreement is negligible compared with the function range.
+        case_scale = 1e-30
         for tp in test_points:
+            try:
+                case_scale = max(case_scale, abs(_screen(float(tp["expected"]))))
+            except (TypeError, ValueError):
+                pass
+
+        # -- C++ cross-check: standalone kernel + RooFunLibPdf -------------------
+        cpp_vals = roo_vals = None
+        if entry.get("_check_cpp", CHECK_CPP):
+            src = entry.get("source_file", "")
+            funcdir = os.path.dirname(src)
+            dir_name = os.path.basename(funcdir)
+            cxmin = xmin if xmin is not None else 110.0
+            cxmax = xmax if xmax is not None else 150.0
+            xs = [float(tp["x"]) for tp in test_points]
+            try:
+                from FunLib.validation.cpp_bridge import cpp_eval, roo_eval
+
+                cpp_vals = [
+                    cpp_eval(
+                        dir_name,
+                        merged_consts,
+                        cxmin,
+                        cxmax,
+                        len(params_list),
+                        xx,
+                        params_list,
+                        funcdir,
+                    )
+                    for xx in xs
+                ]
+                roo_vals = roo_eval(
+                    dir_name,
+                    merged_consts,
+                    cxmin,
+                    cxmax,
+                    len(params_list),
+                    xs,
+                    params_list,
+                    funcdir,
+                )
+            except Exception as e:
+                failures.append(f"  C++ bridge error: {e}")
+
+        for i, tp in enumerate(test_points):
             x, expected = float(tp["x"]), float(tp["expected"])
             scale = max(abs(expected), 1e-30)
             tol = ATOL + RTOL * scale
@@ -514,6 +583,24 @@ def validate_one(entry):
                     failures.append(
                         f"  x={x:.3f}: sympy={v_sym:.6g}  expected={expected:.6g}  "
                         f"(rel={abs(v_sym-expected)/scale:.3e})"
+                    )
+
+            # The three implementations (Python, C++ kernel, C++ RooAbsPdf) must
+            # agree after applying the shared nan/inf/negative -> 0 screening.
+            if cpp_vals is not None and roo_vals is not None:
+                sp = _screen(v_py)
+                ctol = CPP_ATOL + CPP_RTOL * max(abs(sp), case_scale)
+                sc = _screen(cpp_vals[i])
+                sr = _screen(roo_vals[i])
+                if abs(sc - sp) > ctol:
+                    failures.append(
+                        f"  x={x:.3f}: C++={sc:.6g}  python={sp:.6g}  "
+                        f"(rel={abs(sc-sp)/max(abs(sp),1e-30):.3e})"
+                    )
+                if abs(sr - sp) > ctol:
+                    failures.append(
+                        f"  x={x:.3f}: RooFunLibPdf={sr:.6g}  python={sp:.6g}  "
+                        f"(rel={abs(sr-sp)/max(abs(sp),1e-30):.3e})"
                     )
 
     if failures:
@@ -598,7 +685,22 @@ def main():
         action="store_true",
         help="Recompute expected values in tests.json from SymPy results",
     )
+    ap.add_argument(
+        "--cpp",
+        dest="cpp",
+        action="store_true",
+        default=True,
+        help="Also check the C++ kernel + RooFunLibPdf agree (default on)",
+    )
+    ap.add_argument(
+        "--no-cpp",
+        dest="cpp",
+        action="store_false",
+        help="Skip the C++ / RooFunLibPdf cross-check (LaTeX+Python only)",
+    )
     args = ap.parse_args()
+    global CHECK_CPP
+    CHECK_CPP = bool(args.cpp)
 
     functions = load_all_entries()
     if args.key:
@@ -624,6 +726,10 @@ def main():
     results = (
         {}
     )  # key -> (status, msg) -- collected in arrival order, printed in function order
+
+    # Stamp the C++-check flag so worker processes (spawn) honour --no-cpp.
+    for e in functions:
+        e["_check_cpp"] = CHECK_CPP
 
     workers = min(args.workers, len(functions))
     if workers <= 1:

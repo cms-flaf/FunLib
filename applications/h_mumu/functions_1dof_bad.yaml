@@ -1,0 +1,68 @@
+minimization:
+  minimizer: Minuit2
+  algorithm: Migrad
+  tolerance: 0.001
+  max_function_calls: 3000
+  max_iterations: 1000
+  strategy: 1
+  print_level: 0
+  error_def: 1.0
+fit_range:
+  min: 110.0
+  max: 150.0
+  exclude:
+  - - 120.0
+    - 130.0
+reference_integral: 1000000.0
+functions:
+- dir: FunLib/functions/s_exp
+  constants:
+    n_terms: 1
+  initial_params:
+  - -0.055
+  param_bounds:
+    b1:
+      min: -0.553637
+      max: -0.008683
+      methods:
+      - combine
+- dir: FunLib/functions/s_powerlaw
+  constants:
+    n_terms: 1
+  initial_params:
+  - -4.0
+  param_bounds:
+    b1:
+      min: -13.392107
+      max: -1.106416
+      methods:
+      - combine
+- dir: FunLib/functions/bernstein
+  initial_params:
+  - 0.2
+  param_bounds:
+    c1:
+      min: 0.014773
+      max: 0.648836
+      methods:
+      - combine
+- dir: FunLib/functions/sumbesselk0
+  constants:
+    n_terms: 1
+  initial_params:
+  - 0.1376
+  param_bounds:
+    a1:
+      min: 0.007929
+      max: 0.549823
+      methods:
+      - combine
+- dir: FunLib/functions/chebyshev
+  initial_params:
+  - -0.9
+  param_bounds:
+    c1:
+      min: -1.704521
+      max: -0.148179
+      methods:
+      - combine

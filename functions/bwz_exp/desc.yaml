@@ -4,8 +4,15 @@ description: |
   The Breit-Wigner Z kernel for the Z lineshape.
   Corresponds to the **RooModZPdf** (HMuMuRooPdfs.cc v10.6.0) with free quadratic
   parameter b and no Bernstein polynomial.
-latex: 'f(x)=\dfrac{1}{(x^{2}-M_{Z}^{2})^{2}+(M_{Z}\,G_{Z})^{2}}\exp\!\left(a\,x^{\prime}+b\,x^{\prime2}\right),\
-  \ x^{\prime}=\dfrac{2(x-x_{mid})}{x_{\max}-x_{\min}}'
+latex:
+- when: {is_lorentzian: false, is_running: false}
+  formula: 'f(x)=\dfrac{1}{(x^{2}-M_{Z}^{2})^{2}+(M_{Z}\,G_{Z})^{2}}\exp\!\left(a\,x^{\prime}+b\,x^{\prime2}\right),\ x^{\prime}=\dfrac{2(x-x_{mid})}{x_{\max}-x_{\min}}'
+- when: {is_lorentzian: false, is_running: true}
+  formula: 'f(x)=\dfrac{x^{2}}{(x^{2}-M_{Z}^{2})^{2}+(M_{Z}\,G_{Z})^{2}}\exp\!\left(a\,x^{\prime}+b\,x^{\prime2}\right),\ x^{\prime}=\dfrac{2(x-x_{mid})}{x_{\max}-x_{\min}}'
+- when: {is_lorentzian: true, is_running: false}
+  formula: 'f(x)=\dfrac{1}{(x-M_{Z})^{2}+(G_{Z}/2)^{2}}\exp\!\left(a\,x^{\prime}+b\,x^{\prime2}\right),\ x^{\prime}=\dfrac{2(x-x_{mid})}{x_{\max}-x_{\min}}'
+- when: {is_lorentzian: true, is_running: true}
+  formula: 'f(x)=\dfrac{x^{2}}{(x-M_{Z})^{2}+(G_{Z}/2)^{2}}\exp\!\left(a\,x^{\prime}+b\,x^{\prime2}\right),\ x^{\prime}=\dfrac{2(x-x_{mid})}{x_{\max}-x_{\min}}'
 reference: https://arxiv.org/abs/2009.04363
 latex_var_map:
   MZ: "m"
@@ -16,4 +23,6 @@ param_names:
 constants:
   m: 91.1876
   Gamma: 2.4952
+  is_lorentzian: false
+  is_running: false
   exp_max: 700.0  # upper clamp for a*x' + b*x'^2 before exp()

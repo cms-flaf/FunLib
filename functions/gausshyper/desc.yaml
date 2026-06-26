@@ -18,11 +18,11 @@ param_names:
 - b
 - c
 constants:
-  ab_bound: 20.0
+  ab_bound: 50.0
   c_min: 0.1
   c_max: 30.0
 validate_params:
-- 10.0
+- 22.0
 - 3.73475
 - 1.73574
 minimization:

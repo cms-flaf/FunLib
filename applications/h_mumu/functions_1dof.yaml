@@ -1,0 +1,107 @@
+minimization:
+  minimizer: Minuit2
+  algorithm: Migrad
+  tolerance: 0.001
+  max_function_calls: 3000
+  max_iterations: 1000
+  strategy: 1
+  print_level: 0
+  error_def: 1.0
+fit_range:
+  min: 110.0
+  max: 150.0
+  exclude:
+  - - 120.0
+    - 130.0
+reference_integral: 1000000.0
+functions:
+- dir: FunLib/functions/spline_bern
+  initial_params:
+  - 1.1003244
+  param_bounds:
+    c1:
+      min: 0.22271
+      max: 2.817146
+      methods:
+      - combine
+- dir: FunLib/functions/spline_bern
+  key: DYTurbo-Bern-{npar}
+  label: DYTurbo-Bern-{npar}
+  constants:
+    variant: dyturbo
+  initial_params:
+  - 1.1538235
+  param_bounds:
+    c1:
+      min: 0.240583
+      max: 3.038895
+      methods:
+      - combine
+- dir: FunLib/functions/bwz
+  key: BWZ-freeP
+  label: BW Z propagator (free power)
+  constants:
+    is_lorentzian: false
+    is_running: false
+    free_power: true
+  param_names:
+  - p
+  initial_params:
+  - 2.03763
+  param_bounds:
+    p:
+      min: 0.261496
+      max: 3.12276
+      methods:
+      - combine
+- dir: FunLib/functions/bwz
+  key: BWZ-freeP-rwForm
+  label: BW Z propagator (free power, running)
+  constants:
+    is_lorentzian: false
+    is_running: true
+    free_power: true
+  param_names:
+  - p
+  initial_params:
+  - 2.03683
+  param_bounds:
+    p:
+      min: 0.352136
+      max: 4.034378
+      methods:
+      - combine
+- dir: FunLib/functions/bwz
+  key: BWZ-freeP-nrForm
+  label: BW Z propagator (free power, non-rel.)
+  constants:
+    is_lorentzian: true
+    is_running: false
+    free_power: true
+  param_names:
+  - p
+  initial_params:
+  - 1.82167
+  param_bounds:
+    p:
+      min: 0.301079
+      max: 3.598279
+      methods:
+      - combine
+- dir: FunLib/functions/bwz
+  key: BWZ-freeP-nrRwForm
+  label: BW Z propagator (free power, non-rel. running)
+  constants:
+    is_lorentzian: true
+    is_running: true
+    free_power: true
+  param_names:
+  - p
+  initial_params:
+  - 2.3502
+  param_bounds:
+    p:
+      min: 0.406506
+      max: 4.65526
+      methods:
+      - combine

@@ -1,0 +1,1078 @@
+minimization:
+  minimizer: Minuit2
+  algorithm: Migrad
+  tolerance: 0.001
+  max_function_calls: 3000
+  max_iterations: 1000
+  strategy: 1
+  print_level: 0
+  error_def: 1.0
+fit_range:
+  min: 110.0
+  max: 150.0
+  exclude:
+  - - 120.0
+    - 130.0
+reference_integral: 1000000.0
+functions:
+- dir: FunLib/functions/bwz_bern
+  constants:
+    n_terms: 2
+  initial_params:
+  - 1.0
+  - 1.0
+  - -0.01
+  param_bounds:
+    c1:
+      min: 0.228342
+      max: 2.437558
+      methods:
+      - combine
+    c2:
+      min: 0.206563
+      max: 2.50698
+      methods:
+      - combine
+    a:
+      min: 0.001476
+      max: 0.522428
+      methods:
+      - combine
+- dir: FunLib/functions/bwz_bern
+  key: BWZxBern-{npar-1}-rwForm
+  label: BWZ (running-width) × Bernstein-{npar-1}
+  constants:
+    n_terms: 2
+    is_running: true
+  initial_params:
+  - 1.0
+  - 1.0
+  - -0.01
+  param_bounds:
+    c1:
+      min: 0.209977
+      max: 2.404162
+      methods:
+      - combine
+    c2:
+      min: 0.191462
+      max: 2.706397
+      methods:
+      - combine
+    a:
+      min: -0.511408
+      max: 0.508831
+      methods:
+      - combine
+- dir: FunLib/functions/bwz_bern
+  key: BWZxBern-{npar-1}-nrForm
+  label: BWZ (non-rel.) × Bernstein-{npar-1}
+  constants:
+    is_lorentzian: true
+    is_running: false
+    n_terms: 2
+  initial_params:
+  - 1.0
+  - 1.0
+  - -0.01
+  param_bounds:
+    c1:
+      min: 0.223613
+      max: 2.879772
+      methods:
+      - combine
+    c2:
+      min: 0.204462
+      max: 4.516547
+      methods:
+      - combine
+    a:
+      min: -0.515373
+      max: 0.513605
+      methods:
+      - combine
+- dir: FunLib/functions/bwz_bern
+  key: BWZxBern-{npar-1}-nrRwForm
+  label: BWZ (non-rel. running) × Bernstein-{npar-1}
+  constants:
+    is_lorentzian: true
+    is_running: true
+    n_terms: 2
+  initial_params:
+  - 1.0
+  - 1.0
+  - -0.01
+  param_bounds:
+    c1:
+      min: 0.202805
+      max: 2.326391
+      methods:
+      - combine
+    c2:
+      min: 0.184696
+      max: 2.61883
+      methods:
+      - combine
+    a:
+      min: -0.519169
+      max: 0.500654
+      methods:
+      - combine
+- dir: FunLib/functions/landau_bern
+  constants:
+    n_terms: 2
+  initial_params:
+  - 1.3017058
+  - 1.409814
+  - 0.7376434
+  param_bounds:
+    c1:
+      min: 0.251845
+      max: 2.764891
+      methods:
+      - combine
+    c2:
+      min: 0.262982
+      max: 3.258523
+      methods:
+      - combine
+    sigma:
+      min: 0.047857
+      max: 1.455749
+      methods:
+      - combine
+- dir: FunLib/functions/landau_bern
+  key: LandauxBern-1-freeMPV
+  label: Landau (free MPV) × Bernstein-1
+  constants:
+    n_terms: 1
+    variant: free_mpv
+  initial_params:
+  - 91.1876
+  - 1.0
+  - 1.0
+  param_bounds:
+    mpv:
+      min: 17.700614
+      max: 179.833713
+      methods:
+      - combine
+    sigma:
+      min: -0.500001
+      max: 1.203832
+      methods:
+      - combine
+    c1:
+      min: 0.214976
+      max: 2.913679
+      methods:
+      - combine
+- dir: FunLib/functions/s_exp
+  constants:
+    n_terms: 2
+  initial_params:
+  - -0.1410494
+  - 5.7e-06
+  - -0.0318397
+  param_bounds:
+    b1:
+      min: -0.641918
+      max: -0.027721
+      methods:
+      - combine
+    A2:
+      min: 1.0e-06
+      max: 0.500006
+      methods:
+      - combine
+    b2:
+      min: -0.533515
+      max: -0.005165
+      methods:
+      - combine
+- dir: FunLib/functions/s_powerlaw
+  constants:
+    n_terms: 2
+  initial_params:
+  - -16.5712443
+  - 8.6194711
+  - -4.5502197
+  param_bounds:
+    b1:
+      min: -33.423416
+      max: -3.296556
+      methods:
+      - combine
+    A2:
+      min: 1.721292
+      max: 19.696916
+      methods:
+      - combine
+    b2:
+      min: -9.394691
+      max: -0.74425
+      methods:
+      - combine
+- dir: FunLib/functions/spline_bern
+  initial_params:
+  - 1.1003244
+  - 1.1929349
+  - 1.15
+  param_bounds:
+    c1:
+      min: 0.21063
+      max: 2.263669
+      methods:
+      - combine
+    c2:
+      min: 0.214137
+      max: 2.524363
+      methods:
+      - combine
+    c3:
+      min: 0.223709
+      max: 2.827024
+      methods:
+      - combine
+- dir: FunLib/functions/spline_bern
+  key: DYTurbo-Bern-{npar}
+  label: DYTurbo-Bern-{npar}
+  constants:
+    variant: dyturbo
+  initial_params:
+  - 1.1538235
+  - 1.2864738
+  - 1.2
+  param_bounds:
+    c1:
+      min: 0.216744
+      max: 2.323001
+      methods:
+      - combine
+    c2:
+      min: 0.227746
+      max: 2.680172
+      methods:
+      - combine
+    c3:
+      min: 0.240569
+      max: 3.040105
+      methods:
+      - combine
+- dir: FunLib/functions/bwz_redux
+  constants:
+    n_terms: 2
+  initial_params:
+  - 0.15
+  - -0.0005
+  - 2.5
+  param_bounds:
+    c1:
+      min: 0.00675
+      max: 0.568385
+      methods:
+      - combine
+    c2:
+      min: -0.500168
+      max: -1.7e-05
+      methods:
+      - combine
+    p:
+      min: 0.385446
+      max: 3.98986
+      methods:
+      - combine
+- dir: FunLib/functions/bwz_redux
+  key: BWZRedux-{npar-1}-rwForm
+  label: BWZ-Redux (running, poly deg {npar-1})
+  constants:
+    is_lorentzian: false
+    is_running: true
+    n_terms: 2
+  initial_params:
+  - 0.15
+  - -0.0005
+  - 2.5
+  param_bounds:
+    c1:
+      min: 0.001563
+      max: 0.542502
+      methods:
+      - combine
+    c2:
+      min: -0.500124
+      max: -8.0e-06
+      methods:
+      - combine
+    p:
+      min: 0.392914
+      max: 4.065104
+      methods:
+      - combine
+- dir: FunLib/functions/bwz_redux
+  key: BWZRedux-{npar-1}-nrForm
+  label: BWZ-Redux (non-rel., poly deg {npar-1})
+  constants:
+    is_lorentzian: true
+    is_running: false
+    n_terms: 2
+  initial_params:
+  - 0.15
+  - -0.0005
+  - 2.5
+  param_bounds:
+    c1:
+      min: 0.004179
+      max: 0.554757
+      methods:
+      - combine
+    c2:
+      min: -0.500151
+      max: -1.4e-05
+      methods:
+      - combine
+    p:
+      min: 0.387208
+      max: 4.007861
+      methods:
+      - combine
+- dir: FunLib/functions/bwz_redux
+  key: BWZRedux-{npar-1}-nrRwForm
+  label: BWZ-Redux (non-rel. running, poly deg {npar-1})
+  constants:
+    is_lorentzian: true
+    is_running: true
+    n_terms: 2
+  initial_params:
+  - 0.15
+  - -0.0005
+  - 2.5
+  param_bounds:
+    c1:
+      min: -0.505297
+      max: 0.528655
+      methods:
+      - combine
+    c2:
+      min: -0.500106
+      max: -5.0e-06
+      methods:
+      - combine
+    p:
+      min: 0.394688
+      max: 4.083642
+      methods:
+      - combine
+- dir: FunLib/functions/bernstein
+  initial_params:
+  - 0.1443959
+  - 0.288062
+  - 0.1513877
+  param_bounds:
+    c1:
+      min: 0.01918
+      max: 0.680723
+      methods:
+      - combine
+    c2:
+      min: 0.052926
+      max: 0.823487
+      methods:
+      - combine
+    c3:
+      min: 0.02389
+      max: 0.678649
+      methods:
+      - combine
+- dir: FunLib/functions/exppoly
+  initial_params:
+  - -0.8888725
+  - 0.265867
+  - -0.121806
+  param_bounds:
+    c1:
+      min: -1.815115
+      max: -0.146521
+      methods:
+      - combine
+    c2:
+      min: 0.050617
+      max: 0.767033
+      methods:
+      - combine
+    c3:
+      min: -0.624254
+      max: -0.024273
+      methods:
+      - combine
+- dir: FunLib/functions/laurent
+  constants:
+    n_terms: 2
+  initial_params:
+  - 5.0
+  - 0.0
+  - 0.0
+  param_bounds:
+    p:
+      min: 1.406434
+      max: 15.918255
+      methods:
+      - combine
+    c1:
+      min: -2.939718
+      max: -0.293307
+      methods:
+      - combine
+    c2:
+      min: 0.11477
+      max: 1.157658
+      methods:
+      - combine
+- dir: FunLib/functions/dijet
+  initial_params:
+  - -515.0
+  - -45.0
+  - -6.0
+  param_bounds:
+    p1:
+      min: -1781.664202
+      max: 595.221401
+      methods:
+      - combine
+    p2:
+      min: -72.555109
+      max: 35.243136
+      methods:
+      - combine
+    p3:
+      min: -10.514445
+      max: 4.401802
+      methods:
+      - combine
+- dir: FunLib/functions/breit_wigner
+  key: BreitWigner-freeP
+  label: Breit-Wigner (free power)
+  constants:
+    is_lorentzian: false
+    is_running: false
+    free_power: true
+  param_names:
+  - m
+  - Gamma
+  - p
+  initial_params:
+  - 91.1876
+  - 2.4952
+  - 2.0
+  param_bounds:
+    m:
+      min: 18.721564
+      max: 191.727475
+      methods:
+      - combine
+    Gamma:
+      min: -0.5029
+      max: -0.0
+      methods:
+      - combine
+    p:
+      min: 0.213534
+      max: 2.870694
+      methods:
+      - combine
+- dir: FunLib/functions/breit_wigner
+  key: BreitWigner-freeP-rwForm
+  label: Breit-Wigner (free power, running)
+  constants:
+    is_lorentzian: false
+    is_running: true
+    free_power: true
+  param_names:
+  - m
+  - Gamma
+  - p
+  initial_params:
+  - 91.1876
+  - 2.4952
+  - 2.0
+  param_bounds:
+    m:
+      min: 17.721302
+      max: 181.169625
+      methods:
+      - combine
+    Gamma:
+      min: -0.514991
+      max: 0.504895
+      methods:
+      - combine
+    p:
+      min: 0.344447
+      max: 4.270038
+      methods:
+      - combine
+- dir: FunLib/functions/breit_wigner
+  key: BreitWigner-freeP-nrForm
+  label: Breit-Wigner (free power, non-rel.)
+  constants:
+    is_lorentzian: true
+    is_running: false
+    free_power: true
+  param_names:
+  - m
+  - Gamma
+  - p
+  initial_params:
+  - 91.1876
+  - 2.4952
+  - 2.0
+  param_bounds:
+    m:
+      min: 18.065137
+      max: 186.195107
+      methods:
+      - combine
+    Gamma:
+      min: -0.500103
+      max: 0.500889
+      methods:
+      - combine
+    p:
+      min: 0.262824
+      max: 3.636207
+      methods:
+      - combine
+- dir: FunLib/functions/breit_wigner
+  key: BreitWigner-freeP-nrRwForm
+  label: Breit-Wigner (free power, non-rel. running)
+  constants:
+    is_lorentzian: true
+    is_running: true
+    free_power: true
+  param_names:
+  - m
+  - Gamma
+  - p
+  initial_params:
+  - 91.1876
+  - 2.4952
+  - 2.0
+  param_bounds:
+    m:
+      min: 16.789942
+      max: 172.835338
+      methods:
+      - combine
+    Gamma:
+      min: -0.516831
+      max: 0.517926
+      methods:
+      - combine
+    p:
+      min: 0.445535
+      max: 5.64964
+      methods:
+      - combine
+- dir: FunLib/functions/voigtz
+  initial_params:
+  - 0.2299594
+  - 0.1279154
+  - -0.0393514
+  param_bounds:
+    sigma:
+      min: 0.042854
+      max: 1.592842
+      methods:
+      - combine
+    a:
+      min: 0.018506
+      max: 0.786014
+      methods:
+      - combine
+    b:
+      min: -0.554684
+      max: -0.007702
+      methods:
+      - combine
+- dir: FunLib/functions/sumbesselk0
+  constants:
+    n_terms: 2
+  initial_params:
+  - 0.1375824
+  - 2.9e-06
+  - 0.0286083
+  param_bounds:
+    a1:
+      min: 0.027253
+      max: 0.638534
+      methods:
+      - combine
+    R2:
+      min: 0.0
+      max: 0.500003
+      methods:
+      - combine
+    a2:
+      min: 0.00455
+      max: 0.530279
+      methods:
+      - combine
+- dir: FunLib/functions/gammatail
+  initial_params:
+  - -1.4541944
+  - 0.0056759
+  - 94.0601469
+  param_bounds:
+    a:
+      min: -2.860306
+      max: -0.212544
+      methods:
+      - combine
+    b:
+      min: 0.000919
+      max: 0.506594
+      methods:
+      - combine
+    x_s:
+      min: 18.812415
+      max: 192.081825
+      methods:
+      - combine
+- dir: FunLib/functions/gev
+  initial_params:
+  - 99.0189044
+  - 6.8085035
+  - 1.2782328
+  param_bounds:
+    mu:
+      min: 18.56343
+      max: 204.642669
+      methods:
+      - combine
+    sigma:
+      min: 0.346932
+      max: 34.085771
+      methods:
+      - combine
+    xi:
+      min: 0.22786
+      max: 3.447195
+      methods:
+      - combine
+- dir: FunLib/functions/tricomiu
+  initial_params:
+  - 0.5
+  - 35.0
+  - 0.2
+  param_bounds:
+    a:
+      min: -2.0
+      max: 8.0
+      methods:
+      - combine
+    b:
+      min: 5.0
+      max: 55.0
+      methods:
+      - combine
+    c:
+      min: 0.003
+      max: 0.6
+      methods:
+      - combine
+- dir: FunLib/functions/parabcyl
+  initial_params:
+  - -0.680761
+  - 0.067603
+  - -10.301951
+  param_bounds:
+    nu:
+      min: -1.344014
+      max: -0.111272
+      methods:
+      - combine
+    a:
+      min: 0.01302
+      max: 0.567988
+      methods:
+      - combine
+    b:
+      min: -20.664394
+      max: -1.994813
+      methods:
+      - combine
+- dir: FunLib/functions/rationalpade
+  constants:
+    num_deg: 2
+    den_deg: 1
+  initial_params:
+  - 0.0
+  - 0.0
+  - 0.8
+  param_bounds:
+    a1:
+      min: -0.6
+      max: 0.1
+      methods:
+      - combine
+    a2:
+      min: -0.05
+      max: 0.2
+      methods:
+      - combine
+    b1:
+      min: 0.1
+      max: 0.9
+      methods:
+      - combine
+- dir: FunLib/functions/rationalpade
+  constants:
+    num_deg: 1
+    den_deg: 2
+  initial_params:
+  - 0.0
+  - 0.8
+  - 0.0
+  param_bounds:
+    a1:
+      min: -0.3
+      max: 0.3
+      methods:
+      - combine
+    b1:
+      min: 0.5
+      max: 1.0
+      methods:
+      - combine
+    b2:
+      min: 0.05
+      max: 0.3
+      methods:
+      - combine
+- dir: FunLib/functions/exprational
+  constants:
+    num_deg: 2
+    den_deg: 1
+  initial_params:
+  - -1.0
+  - 0.0
+  - 0.0
+  param_bounds:
+    a1:
+      min: -0.9
+      max: -0.1
+      methods:
+      - combine
+    a2:
+      min: -0.3
+      max: 0.0
+      methods:
+      - combine
+    b1:
+      min: 0.1
+      max: 0.9
+      methods:
+      - combine
+- dir: FunLib/functions/exprational
+  constants:
+    num_deg: 1
+    den_deg: 2
+  initial_params:
+  - -1.0
+  - 0.0
+  - 0.0
+  param_bounds:
+    a1:
+      min: -1.1
+      max: -0.3
+      methods:
+      - combine
+    b1:
+      min: 0.1
+      max: 0.3
+      methods:
+      - combine
+    b2:
+      min: -0.2
+      max: 0.0
+      methods:
+      - combine
+- dir: FunLib/functions/chebyshev
+  initial_params:
+  - -0.9278804
+  - 0.3526251
+  - -0.1203914
+  param_bounds:
+    c1:
+      min: -1.876841
+      max: -0.160575
+      methods:
+      - combine
+    c2:
+      min: 0.054641
+      max: 0.840891
+      methods:
+      - combine
+    c3:
+      min: -0.603816
+      max: -0.016872
+      methods:
+      - combine
+- dir: FunLib/functions/pearsonvii
+  initial_params:
+  - 91.3124119
+  - 1.2467723
+  - 0.8775231
+  param_bounds:
+    mu:
+      min: 18.065151
+      max: 186.193576
+      methods:
+      - combine
+    sigma:
+      min: -0.511799
+      max: 0.500685
+      methods:
+      - combine
+    m:
+      min: 0.131418
+      max: 1.818105
+      methods:
+      - combine
+- dir: FunLib/functions/genpareto
+  initial_params:
+  - 102.377408
+  - 14.6558565
+  - 1.3192327
+  param_bounds:
+    mu:
+      min: 20.079659
+      max: 204.499841
+      methods:
+      - combine
+    sigma:
+      min: 2.592675
+      max: 31.990323
+      methods:
+      - combine
+    xi:
+      min: 0.229284
+      max: 4.513022
+      methods:
+      - combine
+- dir: FunLib/functions/ua2
+  initial_params:
+  - -29.8198843
+  - 47.4174564
+  - -8.7279966
+  minimization:
+    max_function_calls: 8000
+  param_bounds:
+    p1:
+      min: -195.494499
+      max: -19.131434
+      methods:
+      - combine
+    p2:
+      min: 50.405522
+      max: 521.277472
+      methods:
+      - combine
+    p3:
+      min: -182.146731
+      max: -17.559787
+      methods:
+      - combine
+- dir: FunLib/functions/inversegauss
+  initial_params:
+  - 10.0879834
+  - 93.9784996
+  - 1.1562306
+  param_bounds:
+    mu:
+      min: 1.859379
+      max: 150778.301677
+      methods:
+      - combine
+    loc:
+      min: 18.224228
+      max: 187.963457
+      methods:
+      - combine
+    scale:
+      min: 0.004158
+      max: 2.394243
+      methods:
+      - combine
+- dir: FunLib/functions/invgamma
+  initial_params:
+  - 0.75803
+  - 91.2511612
+  - 0.0781866
+  param_bounds:
+    a:
+      min: 0.062826
+      max: 1.636208
+      methods:
+      - combine
+    loc:
+      min: 18.065498
+      max: 186.216119
+      methods:
+      - combine
+    scale:
+      min: -0.538078
+      max: 0.512578
+      methods:
+      - combine
+- dir: FunLib/functions/kummerm
+  initial_params:
+  - 4.0897198
+  - 2.0941095
+  - 0.1868768
+  param_bounds:
+    a:
+      min: 0.668622
+      max: 8.414906
+      methods:
+      - combine
+    b:
+      min: 0.269081
+      max: 4.427105
+      methods:
+      - combine
+    c:
+      min: 0.035206
+      max: 0.691436
+      methods:
+      - combine
+- dir: FunLib/functions/gausshyper
+  initial_params:
+  - 22.0
+  - 3.73475
+  - 1.73574
+  param_bounds:
+    a:
+      min: 7.039535
+      max: 80.471415
+      methods:
+      - combine
+    b:
+      min: 0.733868
+      max: 8.193411
+      methods:
+      - combine
+    c:
+      min: 0.334115
+      max: 4.195413
+      methods:
+      - combine
+- dir: FunLib/functions/gnfw
+  initial_params:
+  - 26.022063
+  - 93.5273758
+  - -11.5625049
+  minimization:
+    max_function_calls: 8000
+  param_bounds:
+    rs:
+      min: 4.23818
+      max: 49.506279
+      methods:
+      - combine
+    gamma:
+      min: 20.376445
+      max: 250.598711
+      methods:
+      - combine
+    beta:
+      min: -29.012388
+      max: -2.722293
+      methods:
+      - combine
+- dir: FunLib/functions/gennormal
+  initial_params:
+  - 0.1978384
+  - 97.2490455
+  - 0.0006319
+  param_bounds:
+    beta:
+      min: 0.035734
+      max: 0.713848
+      methods:
+      - combine
+    loc:
+      min: 19.297402
+      max: 196.991543
+      methods:
+      - combine
+    scale:
+      min: 9.2e-05
+      max: 0.50321
+      methods:
+      - combine
+- dir: FunLib/functions/fatiguelife
+  initial_params:
+  - 1.2808313
+  - 103.58525
+  - 15.9605456
+  param_bounds:
+    c:
+      min: 0.250647
+      max: 2.778994
+      methods:
+      - combine
+    loc:
+      min: 20.186784
+      max: 207.253444
+      methods:
+      - combine
+    scale:
+      min: 3.11325
+      max: 36.174279
+      methods:
+      - combine
+- dir: FunLib/functions/doniachsunjic
+  initial_params:
+  - 91.206774
+  - 0.16403
+  - 0.2420152
+  param_bounds:
+    x0:
+      min: 18.065135
+      max: 186.193458
+      methods:
+      - combine
+    gamma:
+      min: -0.506786
+      max: 0.50067
+      methods:
+      - combine
+    alpha:
+      min: 0.025546
+      max: 1.185813
+      methods:
+      - combine
+- dir: FunLib/functions/fano
+  initial_params:
+  - 87.0016072
+  - 0.4693756
+  - -187780.9206456
+  minimization:
+    max_function_calls: 8000
+  param_bounds:
+    x0:
+      min: 16.068084
+      max: 175.081742
+      methods:
+      - combine
+    Gamma:
+      min: -0.503016
+      max: 0.512989
+      methods:
+      - combine
+    q:
+      min: -4184169440193.698
+      max: 1406418278950.265
+      methods:
+      - combine

@@ -20,4 +20,7 @@ constants:
   a_lo: -2.0    # conf_hypergU hangs for a outside [a_lo, a_hi] — clamp
   a_hi: 10.0
   b_lo: -10.0   # conf_hypergU hangs for b outside [b_lo, b_hi] — clamp
-  b_hi: 10.0
+  b_hi: 60.0    # raised 10→60 (2026-06-17): high-stat optimum needs b≈39; conf_hypergU
+                # is fast & finite up to b≈60 (verified). Was the limiter on inclusive/
+                # nobtag/ggF (chi²/ndf 17→2.3). Kernel clamps before eval, so Migrad
+                # pushing b>60 still evaluates fast at the clamp.

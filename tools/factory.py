@@ -333,7 +333,16 @@ def load_kernel(
         merged = dict(config.get("constants", {}))
         merged.update(entry_consts)
         config["constants"] = merged
-    for _field in ("key", "label", "param_names", "npar", "latex", "description"):
+    for _field in (
+        "key",
+        "label",
+        "param_names",
+        "npar",
+        "latex",
+        "description",
+        "param_bounds",
+        "roofit_param_bounds",
+    ):
         if _field in yaml_entry:
             config[_field] = yaml_entry[_field]
 
@@ -583,8 +592,15 @@ class FunctionHandle:
         # Normalisation integral cache
         self._cache_s = None
         self._cache_norm = 1.0
+        self._cache_sref = 1.0
         if normalize:
             self._intervals = _build_unblinded(xmin, xmax, self._excludes)
+            # Grid spanning the unblinded intervals, used to estimate a
+            # scale reference for scale-invariant normalisation.
+            grid = []
+            for a, b in self._intervals:
+                grid += [a + (b - a) * k / 6.0 for k in range(7)]
+            self._sref_grid = grid
 
     # -- Properties ------------------------------------------------------------
 
@@ -642,19 +658,35 @@ class FunctionHandle:
         return v if math.isfinite(v) and v >= 0.0 else 0.0
 
     def _compute_norm(self, shape_params) -> float:
-        """Cached integral_unblinded shape(x; shape_params) dx / bin_width."""
+        """Cached integral_unblinded shape(x; shape_params) dx / bin_width,
+        expressed in units of the shape's own scale ``s_ref``.
+
+        The returned ``norm`` is ``(integral / bin_width) / s_ref`` and is
+        scale-invariant: it stays O(1) however large or tiny the raw kernel
+        is, so the protective floor never spuriously clamps a tiny-shape
+        function's true integral (the old ``max(norm, 1e-30)`` on the
+        un-scaled integral mis-normalised e.g. Dijet, whose raw shape ~1e-32).
+        Callers must divide the kernel value by ``self._cache_sref`` to match.
+        """
         from scipy.integrate import quad
 
         s = tuple(float(v) for v in shape_params)
         if s == self._cache_s:
             return self._cache_norm
 
+        # Scale reference: max screened shape over a grid spanning the
+        # unblinded intervals.  Makes the integral O(1) for any kernel scale.
+        s_ref = max((self._eval_shape(x, s) for x in self._sref_grid), default=0.0)
+        if not (math.isfinite(s_ref) and s_ref > 0.0):
+            s_ref = 1.0
+
         def f(x_val):
-            return self._eval_shape(x_val, s)
+            return self._eval_shape(x_val, s) / s_ref
 
         total = sum(quad(f, a, b, **self._QUAD_OPTS)[0] for a, b in self._intervals)
         norm = total / self._bin_width
         self._cache_s = s
+        self._cache_sref = s_ref
         self._cache_norm = max(norm, 1e-30)
         return self._cache_norm
 
@@ -696,7 +728,10 @@ class FunctionHandle:
 
         if self._normalize:
             norm = self._compute_norm(shape_p)
-            result = N * v / norm
+            # norm is in units of s_ref, so scale v the same way; the s_ref
+            # factors cancel and result == N * v / (integral / bin_width),
+            # but the floor in _compute_norm acts on a scale-free O(1) value.
+            result = N * (v / self._cache_sref) / norm
         else:
             result = N * v
 

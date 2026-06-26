@@ -1,0 +1,1 @@
+../functions/s_powerlaw/fn.h

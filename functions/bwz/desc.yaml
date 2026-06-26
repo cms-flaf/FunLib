@@ -1,8 +1,29 @@
 key: BWZ
 label: BW Z propagator
 description: |
-  Fixed-width relativistic Breit-Wigner Z-boson propagator.
-latex: 'f(x)=\dfrac{1}{(x^{2}-M_{Z}^{2})^{2}+(M_{Z}\,G_{Z})^{2}}'
+  Fixed-width relativistic Breit-Wigner Z-boson propagator.  The denominator
+  form is controlled by three boolean constants (is_lorentzian, is_running,
+  free_power).  Default: relativistic, constant-width, fixed exponent p=2
+  (zero free shape parameters).  Setting free_power=true exposes p as a single
+  free shape parameter (npar=1); is_lorentzian / is_running select the
+  non-relativistic Lorentzian / running-width denominators (see breit_wigner).
+latex:
+- when: {is_lorentzian: false, is_running: false, free_power: false}
+  formula: 'f(x)=\dfrac{1}{(x^{2}-M_{Z}^{2})^{2}+(M_{Z}\,G_{Z})^{2}}'
+- when: {is_lorentzian: false, is_running: true, free_power: false}
+  formula: 'f(x)=\dfrac{x^{2}}{(x^{2}-M_{Z}^{2})^{2}+(M_{Z}\,G_{Z})^{2}}'
+- when: {is_lorentzian: true, is_running: false, free_power: false}
+  formula: 'f(x)=\dfrac{1}{(x-M_{Z})^{2}+(G_{Z}/2)^{2}}'
+- when: {is_lorentzian: true, is_running: true, free_power: false}
+  formula: 'f(x)=\dfrac{x^{2}}{(x-M_{Z})^{2}+(G_{Z}/2)^{2}}'
+- when: {is_lorentzian: false, is_running: false, free_power: true}
+  formula: 'f(x)=\dfrac{1}{(x^{2}-M_{Z}^{2})^{p}+(M_{Z}\,G_{Z})^{p}}'
+- when: {is_lorentzian: false, is_running: true, free_power: true}
+  formula: 'f(x)=\dfrac{x^{2}}{(x^{2}-M_{Z}^{2})^{p}+(M_{Z}\,G_{Z})^{p}}'
+- when: {is_lorentzian: true, is_running: false, free_power: true}
+  formula: 'f(x)=\dfrac{1}{(x-M_{Z})^{p}+(G_{Z}/2)^{p}}'
+- when: {is_lorentzian: true, is_running: true, free_power: true}
+  formula: 'f(x)=\dfrac{x^{2}}{(x-M_{Z})^{p}+(G_{Z}/2)^{p}}'
 latex_var_map:
   MZ: "m"
   GZ: "Gamma"
