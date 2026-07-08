@@ -62,10 +62,19 @@ def _root_config(*args):
 
 
 def _cxx():
-    for n in ("clang++", "g++"):
+    # Use the compiler ROOT was built with so the C++ standard library and ABI
+    # match what we link against (RooFit, MathMore, ...). On lxplus/LCG this is
+    # the LCG gcc; on macOS it is the system clang. Picking the system clang++
+    # on el9 breaks: it has no libc++ headers and mismatches the gcc-built ROOT.
+    cxx_name = _root_config("--cxx")[0] if _root_config("--cxx") else ""
+    if cxx_name:
+        cxx = cxx_name if os.path.isabs(cxx_name) else shutil.which(cxx_name)
+        if cxx:
+            return cxx, "clang" in os.path.basename(cxx)
+    for n in ("g++", "clang++"):
         p = shutil.which(n)
         if p:
-            return p, (n == "clang++")
+            return p, "clang" in n
     sys.exit("No C++ compiler found.")
 
 
@@ -122,7 +131,9 @@ def compile(force=False):
     cxx, is_clang = _cxx()
     print(f"[build_funlib] Compiler: {cxx}")
     common = [
-        *(["-stdlib=libc++"] if is_clang else []),
+        # libc++ is the default stdlib for clang on macOS; on Linux the system
+        # clang usually lacks it, and we compile with gcc there anyway.
+        *(["-stdlib=libc++"] if (is_clang and sys.platform == "darwin") else []),
         "-std=c++17",
         "-O2",
         "-fPIC",
