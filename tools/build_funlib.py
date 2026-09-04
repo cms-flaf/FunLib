@@ -38,6 +38,7 @@ _PCM = os.path.join(_LIB_DIR, f"{_STEM}_rdict.pcm")
 
 _SRC = os.path.join(_CPP, "funlib.cpp")
 _HDR = os.path.join(_CPP, "RooFunLibPdf.h")
+_HDR_BERN = os.path.join(_CPP, "RooFunLibBernPdf.h")
 _LINKDEF = os.path.join(_CPP, "FunLib_LinkDef.h")
 _DICT = os.path.join(_LIB_DIR, "FunLib_dict.cxx")
 
@@ -73,7 +74,7 @@ def _uptodate():
     if not (os.path.isfile(_SO) and os.path.isfile(_MAP)):
         return False
     lib_m = os.path.getmtime(_SO)
-    srcs = [_SRC, _HDR, _LINKDEF]
+    srcs = [_SRC, _HDR, _HDR_BERN, _LINKDEF]
     # every fn.h + base headers
     for root, _, files in os.walk(os.path.join(_ROOT_DIR, "FunLib", "functions")):
         for f in files:
@@ -111,6 +112,7 @@ def compile(force=False):
             f"-I{_INC}",
             f"-I{root_inc}",
             _HDR,
+            _HDR_BERN,
             _LINKDEF,
         ]
     )

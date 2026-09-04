@@ -7,6 +7,7 @@
 #include "funlib_all.h"
 #include "funlib_registry.h"
 #include "RooFunLibPdf.h"
+#include "RooFunLibBernPdf.h"
 
 #include "RooArgList.h"
 #include "RooAbsReal.h"
@@ -128,6 +129,86 @@ Double_t RooFunLibPdf::evaluate() const {
     // the fit range, so it never affects the fitted minimum -- it only prevents
     // log(0) when a parameter excursion drives the analytic form to 0/negative.
     constexpr double kShapeFloor = 1e-300;
+    if (!std::isfinite(v) || v < kShapeFloor) v = kShapeFloor;
+    return v;
+}
+
+// ---- RooFunLibBernPdf (core x Bernstein, single native pdf) -----------------
+ClassImp(RooFunLibBernPdf)
+
+RooFunLibBernPdf::RooFunLibBernPdf()
+    : RooAbsPdf(), _x(), _params(), _bern() {}
+
+RooFunLibBernPdf::RooFunLibBernPdf(
+    const char* name, const char* title, RooAbsReal& x,
+    const RooArgList& coreParams, const RooArgList& bernCoefs, const char* dir,
+    const std::vector<std::string>& cnames, const std::vector<double>& cvals,
+    const std::vector<std::string>& snames, const std::vector<std::string>& svals,
+    int npar, double xmin, double xmax)
+    : RooAbsPdf(name, title),
+      _x("_x", "observable", this, x),
+      _params("_params", "core shape params", this),
+      _bern("_bern", "per-cat Bernstein coeffs", this),
+      _dir(dir),
+      _cnames(cnames),
+      _cvals(cvals),
+      _snames(snames),
+      _svals(svals),
+      _npar(npar),
+      _xmin(xmin),
+      _xmax(xmax) {
+    _params.add(coreParams);
+    _bern.add(bernCoefs);
+}
+
+RooFunLibBernPdf::RooFunLibBernPdf(const RooFunLibBernPdf& o, const char* name)
+    : RooAbsPdf(o, name),
+      _x("_x", this, o._x),
+      _params("_params", this, o._params),
+      _bern("_bern", this, o._bern),
+      _dir(o._dir),
+      _cnames(o._cnames),
+      _cvals(o._cvals),
+      _snames(o._snames),
+      _svals(o._svals),
+      _npar(o._npar),
+      _xmin(o._xmin),
+      _xmax(o._xmax) {}
+
+RooFunLibBernPdf::~RooFunLibBernPdf() { delete _kernel; }
+
+Double_t RooFunLibBernPdf::evaluate() const {
+    if (!_kernel) {
+        funlib::Constants c =
+            funlib::make_constants(_cnames, _cvals, _snames, _svals);
+        _kernel = funlib::make_kernel(_dir.Data(), c, _xmin, _xmax, _npar);
+    }
+    constexpr double kShapeFloor = 1e-300;
+    if (!_kernel) return kShapeFloor;
+    // core(x; theta)
+    int n = _params.size();
+    std::vector<double> p(n);
+    for (int i = 0; i < n; i++)
+        p[i] = static_cast<const RooAbsReal*>(_params.at(i))->getVal();
+    double core = _kernel->eval(double(_x), p.empty() ? nullptr : p.data(), n);
+    // Bern_d(x; a): c0=1 fixed, coeffs c1..cd = _bern; basis over [xmin,xmax].
+    int d = _bern.size();
+    double bern = 1.0;
+    if (d > 0) {
+        double t = (double(_x) - _xmin) / (_xmax - _xmin);
+        double val = 0.0;
+        double binom = 1.0;  // C(d,0)
+        for (int k = 0; k <= d; k++) {
+            double ck =
+                (k == 0)
+                    ? 1.0
+                    : static_cast<const RooAbsReal*>(_bern.at(k - 1))->getVal();
+            val += ck * binom * std::pow(t, k) * std::pow(1.0 - t, d - k);
+            binom = binom * (d - k) / (k + 1);  // -> C(d,k+1)
+        }
+        bern = val;
+    }
+    double v = core * bern;
     if (!std::isfinite(v) || v < kShapeFloor) v = kShapeFloor;
     return v;
 }
